@@ -7,6 +7,7 @@ export const searchLogoLink = styled.a`
 `
 export const searchLogoImg = styled.img`
   width: 54px;
+  margin-right: 60px;
   height: auto;
 `
 export const searchLogoMobLink = styled.a`

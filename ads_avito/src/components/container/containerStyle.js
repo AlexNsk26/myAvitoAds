@@ -26,3 +26,26 @@ export const container = styled.div`
     background-color: #ffffff;
   }
 `
+const pageStyles = {
+  main: css`
+    padding: 52px 10px 37px;
+    @media screen and (max-width: 590px) {
+      padding: 85px 10px 84px;
+    }
+  `,
+  profileUser: css`
+    padding: 52px 10px 79px;
+    @media screen and (max-width: 590px) {
+      padding: 85px 0px 84px;
+    }
+    @media screen and (max-width: 890px) {
+      padding: 85px 0px 84px;
+    }
+  `,
+}
+export const mainContainer = styled.div`
+  max-width: 1178px;
+  margin: 0 auto;
+  ${({ page }) => pageStyles[page]}
+`
+export const main = styled.main``

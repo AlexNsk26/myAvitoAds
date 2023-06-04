@@ -1,58 +1,8 @@
 import styled, { css } from 'styled-components'
 
-export const mainH2 = styled.h2`
-  &:hover::before {
-    border-top: 2px solid #0080c1;
-    border-left: 2px solid #0080c1;
-  }
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 220%;
-  color: #000000;
-  margin-bottom: 30px;
-
+export const searchLogoLink = styled.a`
   @media screen and (max-width: 590px) {
-    font-size: 24px;
-    line-height: 29px;
-    color: #000000;
-    margin-bottom: 20px;
-    text-align: center;
-    position: relative;
-    &:hover::before {
-      content: '';
-      display: block;
-      width: 12px;
-      height: 12px;
-      background-color: transparent;
-      border-top: 2px solid #000000;
-      border-left: 2px solid #000000;
-      -webkit-transform: rotate(-45deg);
-      transform: rotate(-45deg);
-      position: absolute;
-      top: 9px;
-      left: 13px;
-      cursor: pointer;
-    }
-  }
-`
-export const mainContent = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-  position: fixed;
-  right: 0;
-  left: 0;
-  top: 134px;
-  bottom: 84px;
-  @media screen and (max-width: 590px) {
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 134px;
-    bottom: 84px;
+    display: none;
   }
 `
 export const contentCards = styled.div`
@@ -71,7 +21,7 @@ export const contentCards = styled.div`
   scrollbar-color: #ffffff #2e2e2e;
   scrollbar-width: thin;
   scrollbar-width: 0px;
-  height: 922px;
+  // height: 922px;
   &::-webkit-scrollbar {
     width: 0px;
     background-color: #009ee4;
@@ -102,5 +52,19 @@ export const contentCards = styled.div`
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+  }
+`
+export const mainTitle = styled.h3`
+padding-left: 20px;
+  margin-bottom: 20px;
+  font-size: 32px;
+  line-height: 70px;
+  font-weight: 500;
+  color: #000000;
+
+  @media screen and (max-width: 620px) {
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 1;
   }
 `

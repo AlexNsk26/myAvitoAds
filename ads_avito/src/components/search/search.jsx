@@ -15,7 +15,7 @@ function SearchForm() {
         name="search-mob"
       />
       <S.searchBtn_group>
-        <Button.s16d.blue width="158px" height="50px">
+        <Button.s16d.blue reg={{width:"158px", height:"50px"}}>
           Найти
         </Button.s16d.blue>
       </S.searchBtn_group>

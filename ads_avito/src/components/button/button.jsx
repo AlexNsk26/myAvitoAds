@@ -3,25 +3,25 @@ import { sizeStyles, colorStyles } from './styleData/dynemicStyles'
 
 function btn(fontSize, color) {
   function StyledButtonConstructor({
-    width = '100%',
-    height = 'auto',
     onClick = () =>
       console.log(`I am a ${color} button with ${fontSize} font-size`),
     children,
     disabled = false,
-    border = true
+    border = true,
+    reg = {},
+    mob = {},
   }) {
     return (
       <StyledButton
         onClick={onClick}
         style={{
-          width,
-          height,
           size: sizeStyles[fontSize],
           color: colorStyles[color],
           activity: !disabled,
-          border
+          border,
         }}
+        reg={reg}
+        mob={mob}
         disabled={disabled}
       >
         {children}

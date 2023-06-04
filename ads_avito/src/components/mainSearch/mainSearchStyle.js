@@ -1,15 +1,21 @@
 import styled, { css } from 'styled-components'
 export const mainSearch = styled.div`
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  ${({ page }) =>
+    !(page === 'main')
+      ? css`
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+        `
+      : css`
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+          justify-content: space-between;
+        `}
   padding: 11px 0;
   max-width: 1178px;
   margin: 0 auto;

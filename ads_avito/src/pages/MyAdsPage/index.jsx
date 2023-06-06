@@ -12,6 +12,7 @@ import { AdsContainer } from '../../components/adsContainer/adsContainer'
 import { RightBlock } from '../../components/adsBlockRight/adsBlockRight'
 import DescAds from '../../components/adsDescr/adsDescr'
 import LeftBlock from '../../components/adsBlockLeft/adsBlockLeft'
+import AdsChangeForm from '../../components/adsChange/adsChange'
 import {
   barImgs,
   barImgsMob,
@@ -27,6 +28,7 @@ function MyAdsPage() {
   const namePage = GetPageName()
   return (
     <Wrapper.Container>
+      <AdsChangeForm/>
       <Header>
         <HeaderBtnGroup />
       </Header>

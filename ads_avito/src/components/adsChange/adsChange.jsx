@@ -1,17 +1,12 @@
 import * as S from './styleAdsChange'
 import FormChange from './formBlock'
+import ModalBlock from '../modalBlock/modalBlock'
 
-function AdsChangeForm({}) {
+function AdsChangeForm({ type = 'new' }) {
   return (
-    <S.modalBlock>
-      <S.modalContent>
-        <S.modalTitle>Редактировать объявление</S.modalTitle>
-        <S.modalBtnClose>
-          <S.modalBtnCloseLine />
-        </S.modalBtnClose>
-        <FormChange />
-      </S.modalContent>
-    </S.modalBlock>
+    <ModalBlock type={type}>
+      <FormChange type={type} />
+    </ModalBlock>
   )
 }
 

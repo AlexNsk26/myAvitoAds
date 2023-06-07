@@ -199,3 +199,40 @@ export const adsPrice = '2 200'
 
 export const descr =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+export const arrReviews = [
+  {
+    id: '1',
+    reviewName: 'Alexander',
+    reviewDate: '14 августа',
+    reviewText:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  },
+  {
+    id: '2',
+    reviewName: 'Alexander',
+    reviewDate: '14 августа',
+    reviewText:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  },
+  {
+    id: '3',
+    reviewName: 'Alexander',
+    reviewDate: '14 августа',
+    reviewText:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  },
+  {
+    id: '4',
+    reviewName: 'Alexander',
+    reviewDate: '14 августа',
+    reviewText:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  },
+  {
+    id: '5',
+    reviewName: 'Alexander',
+    reviewDate: '14 августа',
+    reviewText:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  },
+]

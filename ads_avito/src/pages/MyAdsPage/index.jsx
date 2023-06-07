@@ -13,6 +13,7 @@ import { RightBlock } from '../../components/adsBlockRight/adsBlockRight'
 import DescAds from '../../components/adsDescr/adsDescr'
 import LeftBlock from '../../components/adsBlockLeft/adsBlockLeft'
 import AdsChangeForm from '../../components/adsChange/adsChange'
+import AdsCommentForm from '../../components/commentForm/commentForm'
 import {
   barImgs,
   barImgsMob,
@@ -28,7 +29,7 @@ function MyAdsPage() {
   const namePage = GetPageName()
   return (
     <Wrapper.Container>
-      <AdsChangeForm/>
+      <AdsCommentForm/>
       <Header>
         <HeaderBtnGroup />
       </Header>

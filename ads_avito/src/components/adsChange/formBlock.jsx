@@ -1,4 +1,6 @@
 import * as S from './styleAdsChange'
+import FormBlockPic from './picAdsBar'
+import SaveBtn from './saveBtn'
 
 function FormBlockName({ valueName = '' }) {
   return (
@@ -30,6 +32,7 @@ function FormBlockDescr({ valueDescr = '' }) {
     </S.formBlock>
   )
 }
+
 function FormBlockPrice({ valuePrice = '' }) {
   return (
     <S.formBlock type="price">
@@ -44,12 +47,14 @@ function FormBlockPrice({ valuePrice = '' }) {
     </S.formBlock>
   )
 }
-function FormChange({}) {
+function FormChange({type}) {
   return (
     <S.modalForm id="formNewArt" action="#">
       <FormBlockName />
       <FormBlockDescr />
+      <FormBlockPic />
       <FormBlockPrice />
+      <SaveBtn disabled={false} type={type}/>
     </S.modalForm>
   )
 }

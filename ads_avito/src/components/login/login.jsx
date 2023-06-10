@@ -13,8 +13,8 @@ function LoginForm() {
       <S.modalLogo>
         <S.imgLogo src={LogoLogin} alt="logo" />
       </S.modalLogo>
-      <LoginGroup  arr={signUp ? signUpGroup : loginGroup} />
-      <BtnLoginGroup signUp={signUp} />
+      <LoginGroup setSignUp={setSignUp} arr={signUp ? signUpGroup : loginGroup} />
+      <BtnLoginGroup signUpState={{signUp,setSignUp}} />
     </S.modalForm>
   )
 }

@@ -10,9 +10,15 @@ export function BtnSignUpDark() {
   )
 }
 
-export function BtnSignUpLight() {
+export function BtnSignUpLight({ setSignUp }) {
+  const onClickHandler = () => setSignUp((prev) => !prev)
   return (
-    <Button.s18.white reg={reg} mob={mob} border="1px solid #D9D9D9">
+    <Button.s18.white
+      onClick={onClickHandler}
+      reg={reg}
+      mob={mob}
+      border="1px solid #D9D9D9"
+    >
       Зарегистрироваться
     </Button.s18.white>
   )

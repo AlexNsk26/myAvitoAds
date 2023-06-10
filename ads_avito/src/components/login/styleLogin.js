@@ -4,7 +4,7 @@ import LogoLoginMob from './img/logoLogin.png'
 
 export const modalForm = styled.div`
   width: 366px;
-  height: 439px;
+  height: ${({ signUp }) => (signUp ? '647px' : '439px')};
   background-color: #ffffff;
   border-radius: 12px;
   display: -webkit-box;
@@ -52,7 +52,7 @@ export const modalLogo = styled.div`
 export const imgLogo = styled.img`
   width: 140px;
   height: auto;
-  src: url('/img/logoLogin.png');
+  //src: url('/img/logoLogin.png');
   @media screen and (max-width: 768px) {
     width: 120px;
     height: auto;

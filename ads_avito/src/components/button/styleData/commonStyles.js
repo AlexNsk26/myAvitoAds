@@ -11,7 +11,7 @@ export const StyledButton = styled('button')`
   border-radius: 6px;
 
   /* border: 0px solid transparent; */
-  border: ${(props) => (props.style.border ? `1px solid #ffffff` : `none`)};
+  border: ${(props) => (props.style.border)};
   background: ${(props) => props.style.color.bg.regular};
 
   &:hover {

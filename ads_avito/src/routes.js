@@ -4,6 +4,7 @@ import ProfileUserPage from './pages/profilePage'
 import ProfileSellerPage from './pages/profileSellerPage'
 import MyAdsPage from './pages/MyAdsPage'
 import AdsPage from './pages/adsPage'
+import LoginPage from './pages/loginPage'
 
 export function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ export function AppRoutes() {
       <Route path="/profileSeller" element={<ProfileSellerPage />} />
       <Route path="/MyAdsPage" element={<MyAdsPage />} />
       <Route path="/AdsPage" element={<AdsPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   )
 }

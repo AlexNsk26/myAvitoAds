@@ -7,7 +7,7 @@ function btn(fontSize, color) {
       console.log(`I am a ${color} button with ${fontSize} font-size`),
     children,
     disabled = false,
-    border = true,
+    border = `1px solid #ffffff`,
     reg = {},
     mob = {},
   }) {
@@ -34,5 +34,5 @@ function btn(fontSize, color) {
 export const Button = {
   s16l: { blue: btn(161, 'blueLight') },
   s16d: { blue: btn(162, 'blueDark') },
-  s18: { blue: btn(18, 'blue'), white: btn(18, 'white') },
+  s18: { blue: btn(18, 'blueDark'), white: btn(18, 'white') },
 }

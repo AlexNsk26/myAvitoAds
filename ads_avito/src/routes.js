@@ -1,8 +1,8 @@
 import { Routes, Route, useParams } from 'react-router-dom'
-import Main from './pages/main'
+import Main from './pages/mainPage/index'
 import ProfileUserPage from './pages/profilePage'
 import ProfileSellerPage from './pages/profileSellerPage'
-import MyAdsPage from './pages/MyAdsPage'
+import MyAdsPage from './pages/myAdsPage'
 import AdsPage from './pages/adsPage'
 import LoginPage from './pages/loginPage'
 

@@ -2,16 +2,16 @@ import * as S from './logoStyle'
 import logo from './img/Logo.png'
 import logoMob from './img/LogoMob.png'
 
-export function Logo() {
+export function Logo({ navigate }) {
   return (
-    <S.searchLogoLink href="#" target="_blank">
+    <S.searchLogoLink onClick={() => navigate('/')} href="#" target="_self">
       <S.searchLogoImg src={logo} alt="logo" />
     </S.searchLogoLink>
   )
 }
-export function LogoMob() {
+export function LogoMob({ navigate }) {
   return (
-    <S.searchLogoMobLink href="#" target="_blank">
+    <S.searchLogoMobLink onClick={() => navigate('/')} href="#" target="_self">
       <S.searchLogoMobImg src={logoMob} alt="logo" />
     </S.searchLogoMobLink>
   )

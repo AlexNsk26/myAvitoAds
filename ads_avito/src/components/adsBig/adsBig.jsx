@@ -1,12 +1,13 @@
 import * as S from './adsBigStyle'
+import { BASE_URL } from '../../services/queryApi'
 
-function AdsBig({ id, title, price, place, date }) {
+function AdsBig({ id, title, price, place, date, src }) {
   return (
     <S.cardsItem key={id}>
       <S.card>
         <S.cardsImage>
-          <S.aRef href="#" target="_blank">
-            <S.aImg src="#" alt="picture" />
+          <S.aRef href="#" target="_self">
+            <S.aImg src={BASE_URL + src} alt="picture" />
           </S.aRef>
         </S.cardsImage>
 
@@ -24,8 +25,6 @@ function AdsBig({ id, title, price, place, date }) {
 }
 
 function AdsBigArr({ adsArr = [] }) {
-  return adsArr.map(({ id, title, price, place, date }) =>
-    AdsBig({ id, title, price, place, date })
-  )
+  return adsArr.map((ads) => AdsBig({ ...ads }))
 }
 export default AdsBigArr

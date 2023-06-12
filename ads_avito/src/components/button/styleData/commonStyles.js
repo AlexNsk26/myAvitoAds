@@ -11,7 +11,7 @@ export const StyledButton = styled('button')`
   border-radius: 6px;
 
   /* border: 0px solid transparent; */
-  border: ${(props) => (props.style.border)};
+  border: ${(props) => props.style.border};
   background: ${(props) => props.style.color.bg.regular};
 
   &:hover {
@@ -21,7 +21,7 @@ export const StyledButton = styled('button')`
   }
 
   &:disabled {
-    background: #D9D9D9;
+    background: #d9d9d9;
   }
 
   transition: all 0.5s ease-out;
@@ -43,5 +43,16 @@ export const StyledButton = styled('button')`
   @media screen and (max-width: 580px) {
     width: ${(props) => (props.mob.width ? props.mob.width : `100%`)};
     height: ${(props) => (props.mob.height ? props.mob.height : `100%`)};
+    font-size: ${(props) => `${String(props.style.size.font - 2)}px`};
+  }
+  @media screen and (max-width: 768px) {
+    width: ${(props) => (props.mob.width ? props.mob.width : `100%`)};
+    height: ${(props) => (props.mob.height ? props.mob.height : `100%`)};
+    font-size: ${(props) =>
+      `${
+        props.style.size.font === 18
+          ? String(props.style.size.font - 2)
+          : String(props.style.size.font)
+      }px`};
   }
 `

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import LogoLogin from './img/logoLogin.png'
 import LogoLoginMob from './img/logoLogin.png'
 
-export const modalForm = styled.div`
+export const modalForm = styled.form`
   width: 366px;
   height: ${({ signUp }) => (signUp ? '647px' : '439px')};
   background-color: #ffffff;
@@ -52,6 +52,7 @@ export const modalLogo = styled.div`
 export const imgLogo = styled.img`
   width: 140px;
   height: auto;
+
   //src: url('/img/logoLogin.png');
   @media screen and (max-width: 768px) {
     width: 120px;
@@ -147,3 +148,13 @@ export const btnGroup = styled.div`
   flex-direction: column;
   gap: 10px;
 `
+export const errorGroup = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`
+export const error = styled.p`
+color: red;
+`
+
+export const errorStatus = styled.h4``

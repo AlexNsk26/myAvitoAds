@@ -1,16 +1,36 @@
 import * as S from './headerBtnGroupStyle'
 import { Button } from '../button/button'
 
-function HeaderBtnGroup() {
+function HeaderBtnGroup({ isLogin = false, navigate }) {
+  
   return (
-    <S.groupButtonHeader>
-      <Button.s16l.blue reg={{width:"230px", height:"40px"}} id="btputAd">
-        Разместить Объявление
-      </Button.s16l.blue>
-      <Button.s16l.blue reg={{width:"171px", height:"40px"}} id="btputAd">
-        Личный кабинет
-      </Button.s16l.blue>
-    </S.groupButtonHeader>
+    <>
+      {!isLogin && (
+        <Button.s16l.blue
+          onClick={() => navigate('/login')}
+          reg={{ width: '224px', height: '40px' }}
+          id="btnMainEnter"
+        >
+          Вход в личный кабинет
+        </Button.s16l.blue>
+      )}
+      {isLogin && (
+        <S.groupButtonHeader>
+          <Button.s16l.blue
+            reg={{ width: '230px', height: '40px' }}
+            id="btputAd"
+          >
+            Разместить Объявление
+          </Button.s16l.blue>
+          <Button.s16l.blue
+            reg={{ width: '171px', height: '40px' }}
+            id="btputAd"
+          >
+            Личный кабинет
+          </Button.s16l.blue>
+        </S.groupButtonHeader>
+      )}
+    </>
   )
 }
 

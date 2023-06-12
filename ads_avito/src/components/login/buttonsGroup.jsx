@@ -2,13 +2,29 @@ import * as S from './styleLogin'
 import BtnLogin from './btnLogin'
 import { BtnSignUpDark, BtnSignUpLight } from './btnSighUp'
 
-function BtnLoginGroup({ signUpState }) {
+function BtnLoginGroup({
+  signUpState,
+  clickBtnLogin,
+  dispatch,
+  setLoginDataReq,
+  clickBtnSignUp,
+  disabled,
+}) {
   return (
     <S.btnGroup>
-      {!signUpState.signUp && <BtnLogin />}
-      {signUpState.signUp && <BtnSignUpDark />}
       {!signUpState.signUp && (
-        <BtnSignUpLight setSignUp={signUpState.setSignUp} />
+        <BtnLogin disabled={disabled} clickBtnLogin={clickBtnLogin} />
+      )}
+      {signUpState.signUp && (
+        <BtnSignUpDark disabled={disabled} clickBtnSignUp={clickBtnSignUp} />
+      )}
+      {!signUpState.signUp && (
+        <BtnSignUpLight
+          disabled={disabled}
+          setLoginDataReq={setLoginDataReq}
+          dispatch={dispatch}
+          setSignUp={signUpState.setSignUp}
+        />
       )}
     </S.btnGroup>
   )

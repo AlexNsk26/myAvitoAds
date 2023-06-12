@@ -1,5 +1,6 @@
 import * as S from './styleMyAdsPage'
 import { Logo, LogoMob } from '../../components/logo/logo'
+import { useNavigate } from 'react-router-dom'
 import BackBtn from '../../components/backBtn/backBtn'
 import Header from '../../components/header/header'
 import * as Wrapper from '../../components/container/container'
@@ -22,21 +23,22 @@ import {
   authorInfo,
   adsPrice,
   descr,
-  phoneNumHide
+  phoneNumHide,
 } from '../../mockData/mockData'
 
 function MyAdsPage() {
   const namePage = GetPageName()
+  const navigate = useNavigate()
   return (
     <Wrapper.Container>
-      <AdsCommentForm/>
+      <AdsCommentForm />
       <Header>
         <HeaderBtnGroup />
       </Header>
       <Wrapper.MainDiv>
         <MainSearch>
-          <Logo />
-          <LogoMob />
+          <Logo navigate={navigate} />
+          <LogoMob navigate={navigate} />
           <BackBtn />
         </MainSearch>
         <Wrapper.MainContainer page={namePage}>
@@ -48,7 +50,7 @@ function MyAdsPage() {
               articleInfo={articleInfo}
               authorInfo={authorInfo}
               namePage={namePage}
-              phoneNumHide ={phoneNumHide}
+              phoneNumHide={phoneNumHide}
             />
           </AdsContainer>
           <DescAds descr={descr} />

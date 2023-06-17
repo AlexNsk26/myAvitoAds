@@ -1,6 +1,7 @@
 import * as S from './styleMainPage'
 import { Logo, LogoMob } from '../../components/logo/logo'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import SearchForm from '../../components/search/search'
 import Header from '../../components/header/header'
 import MainSearch from '../../components/mainSearch/mainSearch'
@@ -12,17 +13,21 @@ import {
   IsLogin,
   ConvertDate,
 } from '../../components/commonFunctions/commonFunc'
-import { adsData } from '../../mockData/mockData'
+import { usersCitySelector } from '../../store/selectors'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
-import { BASE_URL, useGetAllAdsQuery } from '../../services/queryApi'
-const CombineAllAdsData = (arrData = []) => {
-  return arrData.map((ads) => {
-    const { id, title, price, place, created_on, images } = ads
+import {
+  BASE_URL,
+  useGetAllAdsQuery,
+  useGetAllUsersQuery,
+} from '../../services/queryApi'
+const CombineAllAdsData = (arrAdsData = [], arrUsersData = []) => {
+  return arrAdsData.map((ads) => {
+    const { id, title, price, user, created_on, images } = ads
     return {
       id,
       title,
       price,
-      place: 'Неизвестено',
+      place: user.city,
       date: ConvertDate(created_on),
       src: images[0]?.url,
     }
@@ -30,22 +35,22 @@ const CombineAllAdsData = (arrData = []) => {
 }
 function Main() {
   const navigate = useNavigate()
+
   const {
     data: dataAdsAll,
     error: errorDataAdsAll,
     isLoading: isLoadingDataAdsAll,
   } = useGetAllAdsQuery()
-  console.log(CombineAllAdsData(dataAdsAll))
-  console.log(dataAdsAll)
+
   return (
     <Wrapper.Container>
       <Header>
-        <HeaderBtnGroup navigate={navigate} isLogin={IsLogin()} />
+        <HeaderBtnGroup isLogin={IsLogin()} />
       </Header>
       <Wrapper.MainDiv>
         <MainSearch>
-          <Logo navigate={navigate} />
-          <LogoMob navigate={navigate} />
+          <Logo />
+          <LogoMob />
           <SearchForm />
         </MainSearch>
         <Wrapper.MainContainer page={GetPageName()}>

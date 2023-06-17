@@ -8,7 +8,9 @@ export function GetPageName() {
 }
 
 export function IsLogin() {
-  return sessionStorage.getItem('tokens') ? true : false
+  return (sessionStorage.getItem('tokens') && localStorage.getItem('loginData'))
+    ? true
+    : false
 }
 
 export function ConvertDate(stringDate) {
@@ -16,20 +18,7 @@ export function ConvertDate(stringDate) {
   const difHours = (new Date() - dateObj) / 1000 / 60 / 60 / 24
   const currentYear = new Date().getFullYear()
   const periodsH = { 1: 'Сегодня', 2: 'Вчера' }
-  const periodsM = {
-    0: 'января',
-    1: 'февраля',
-    2: 'марта',
-    3: 'апреля',
-    4: 'мая',
-    5: 'июня',
-    6: 'июля',
-    7: 'августа',
-    8: 'сентября',
-    9: 'октября',
-    10: 'ноября',
-    11: 'декабря',
-  }
+
   let combinedDate = []
   const year =
     currentYear === dateObj.getFullYear()
@@ -53,4 +42,19 @@ export function ConvertDate(stringDate) {
   combinedDate.push(year)
 
   return combinedDate.filter((item) => item !== '').join(' ')
+}
+
+export const periodsM = {
+  0: 'января',
+  1: 'февраля',
+  2: 'марта',
+  3: 'апреля',
+  4: 'мая',
+  5: 'июня',
+  6: 'июля',
+  7: 'августа',
+  8: 'сентября',
+  9: 'октября',
+  10: 'ноября',
+  11: 'декабря',
 }

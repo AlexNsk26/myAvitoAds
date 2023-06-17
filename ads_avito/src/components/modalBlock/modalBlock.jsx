@@ -4,12 +4,12 @@ const typeParams = {
   edit: 'Редактировать объявление',
   comment: 'Отзывы о товаре',
 }
-function ModalBlock({ type, children }) {
+function ModalBlock({ setShowComments, type, children }) {
   return (
     <S.modalBlock>
       <S.modalContent>
         <S.modalTitle>{typeParams[type]}</S.modalTitle>
-        <S.modalBtnClose>
+        <S.modalBtnClose onClick={() => setShowComments(false)}>
           <S.modalBtnCloseLine />
         </S.modalBtnClose>
         {children}

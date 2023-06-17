@@ -4,13 +4,13 @@ import NewCommentForm from './addComment'
 import ReviewsGroup from './reviews'
 import { arrReviews } from '../../mockData/mockData'
 
-function AdsCommentForm({ type = 'comment' }) {
+function AdsCommentForm({dataComments, isLogin, setShowComments, type = 'comment' }) {
   return (
-    <ModalBlock type={type}>
+    <ModalBlock setShowComments={setShowComments} type={type}>
       <S.modalScroll>
-        <NewCommentForm />
+        {isLogin && <NewCommentForm />}
         <S.modalReviews>
-          <ReviewsGroup arrRev={arrReviews} />
+          <ReviewsGroup arrRev={dataComments} />
         </S.modalReviews>
       </S.modalScroll>
     </ModalBlock>

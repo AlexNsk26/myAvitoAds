@@ -1,15 +1,17 @@
 import * as S from './styleAdsBlockRight'
 
-function ArticleInfo({ dataInfo }) {
+function ArticleInfo({ setShowComments, dataInfo, dataComments = [] }) {
+  const onClickCommentHandler = (e) => {
+    e.preventDefault()
+    setShowComments(true)
+  }
   return (
     <S.articleInfo>
-      <S.articleDateCity>{`Сегодня в ${dataInfo.date}`}</S.articleDateCity>
-      <S.articleDateCity>{dataInfo.city}</S.articleDateCity>
+      <S.articleDateCity>{dataInfo?.date}</S.articleDateCity>
+      <S.articleDateCity>{dataInfo?.city}</S.articleDateCity>
       <S.articleLink
-        href=""
-        target="_blank"
-        rel=""
-      >{`${dataInfo.sumComment} отзыва`}</S.articleLink>
+        onClick={(e) => onClickCommentHandler(e)}
+      >{`${dataComments.length} отзыва`}</S.articleLink>
     </S.articleInfo>
   )
 }

@@ -15,6 +15,7 @@ import DescAds from '../../components/adsDescr/adsDescr'
 import LeftBlock from '../../components/adsBlockLeft/adsBlockLeft'
 import AdsChangeForm from '../../components/adsChange/adsChange'
 import AdsCommentForm from '../../components/commentForm/commentForm'
+import { useGetAdsByIdQuery, useGetAllComByIdAdsQuery } from '../../services/queryApi'
 import {
   barImgs,
   barImgsMob,
@@ -37,8 +38,8 @@ function MyAdsPage() {
       </Header>
       <Wrapper.MainDiv>
         <MainSearch>
-          <Logo navigate={navigate} />
-          <LogoMob navigate={navigate} />
+          <Logo  />
+          <LogoMob />
           <BackBtn />
         </MainSearch>
         <Wrapper.MainContainer page={namePage}>

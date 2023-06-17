@@ -169,9 +169,6 @@ export const modalReview = styled.div`
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   margin: 15px 0;
   flex-direction: column;

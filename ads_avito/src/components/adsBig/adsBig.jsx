@@ -6,13 +6,13 @@ function AdsBig({ id, title, price, place, date, src }) {
     <S.cardsItem key={id}>
       <S.card>
         <S.cardsImage>
-          <S.aRef href="#" target="_self">
+          <S.aRef>
             <S.aImg src={BASE_URL + src} alt="picture" />
           </S.aRef>
         </S.cardsImage>
 
         <S.cardContent>
-          <S.aRef>
+          <S.aRef href={`/AdsPage/${id}`} target="_self">
             <S.cardTitle>{title}</S.cardTitle>
           </S.aRef>
           <S.cardPrice>{price}</S.cardPrice>

@@ -10,12 +10,10 @@ import {
   usePostTokensLoginQuery,
   usePostSignUpQuery,
 } from '../../services/queryApi'
-import { AvitoQueryApi } from '../../services/queryApi'
 import ErrorsGroup from './errorGroup'
 import { BASE_URL } from '../../services/queryApi'
 
 const GetInputParams = () => {
-  const searchParams = new URL(document.URL).searchParams
   const logForm = document.querySelector('form')
   let params = {}
   for (let index = 0; index < logForm.children.length; index++) {
@@ -63,12 +61,26 @@ function LoginForm() {
   }, [dataSignUp])
   useEffect(() => {
     if (dataLogin) {
+      const { access_token, token_type } = dataLogin
       sessionStorage.setItem('tokens', JSON.stringify(dataLogin))
+      fetch(`${BASE_URL}user`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${token_type} ${access_token}`,
+        },
+      })
+        .then((response) => {
+          const data = response.text()
+          return data
+        })
+        .then((result) => {
+          localStorage.setItem('loginData', result)
+        })
       setInterval(() => {
-        const { access_token, refresh_token, token_type } = JSON.parse(
+        const { access_token, refresh_token } = JSON.parse(
           sessionStorage.getItem('tokens')
         )
-        console.log(access_token)
         fetch(`${BASE_URL}auth/login`, {
           method: 'PUT',
           headers: {
@@ -81,15 +93,13 @@ function LoginForm() {
         })
           .then((response) => {
             const data = response.text()
-            console.log(data)
             return data
           })
           .then((result) => {
-            console.log(result)
             sessionStorage.setItem('tokens', result)
           })
       }, 30000)
-      navigate('/MyAdsPage')
+      navigate('/profileUser')
     }
   }, [dataLogin])
   function ComparePassword(firstPasw, secondPasw) {

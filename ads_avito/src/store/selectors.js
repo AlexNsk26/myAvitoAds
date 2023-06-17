@@ -1,10 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { AvitoQueryApi } from '../services/queryApi'
 
-const apiSelectorPostTokensLogin =
-  AvitoQueryApi.endpoints.postTokensLogin.select()
-export const postTokensLoginErrors = createSelector(
-  apiSelectorPostTokensLogin,
-  (loginResult) => loginResult?.error ?? []
+const apiSelectorGetUsersAll = AvitoQueryApi.endpoints.getAllUsers.select()
+export const usersCitySelector = createSelector(
+  apiSelectorGetUsersAll,
+  (result = []) => result?.data
 )
-AvitoQueryApi.endpoints.postTokensLogin.initiate()
+

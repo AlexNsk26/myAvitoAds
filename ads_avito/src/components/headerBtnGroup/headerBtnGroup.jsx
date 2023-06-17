@@ -1,8 +1,9 @@
 import * as S from './headerBtnGroupStyle'
 import { Button } from '../button/button'
+import { useNavigate } from 'react-router-dom'
 
-function HeaderBtnGroup({ isLogin = false, navigate }) {
-  
+function HeaderBtnGroup({ isLogin = false }) {
+  const navigate = useNavigate()
   return (
     <>
       {!isLogin && (

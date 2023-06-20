@@ -6,17 +6,33 @@ import * as Wrapper from '../../components/container/container'
 import MainSearch from '../../components/mainSearch/mainSearch'
 import AdsBigArr from '../../components/adsBig/adsBig'
 import Footer from '../../components/footer/footer'
-import { GetPageName } from '../../components/commonFunctions/commonFunc'
+import {
+  GetPageName,
+  IsLogin,
+  ConvertDate,
+} from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import UserProfile from '../../components/userProfile/userProfile'
-import { myAdsData, profileUserData, profileUserFields } from '../../mockData/mockData'
+import { useGetAllAdsMyQuery } from '../../services/queryApi'
+
+import {
+  myAdsData,
+  profileUserData,
+  profileUserFields,
+} from '../../mockData/mockData'
 
 function ProfileUserPage() {
-  const namePage = GetPageName();
+  const namePage = GetPageName()
+  const {
+    data: dataAdsAllMy,
+    error: errorDataAdsAllMy,
+    isLoading: isLoadingDataAdsAllMy,
+  } = useGetAllAdsMyQuery()
+  //console.log(dataAdsAllMy);
   return (
     <Wrapper.Container>
       <Header>
-        <HeaderBtnGroup />
+        <HeaderBtnGroup isLogin={IsLogin()} />
       </Header>
       <Wrapper.MainDiv>
         <MainSearch>
@@ -25,8 +41,12 @@ function ProfileUserPage() {
           <BackBtn />
         </MainSearch>
         <Wrapper.MainContainer page={namePage}>
-            <UserProfile profileUserData={profileUserData} profileUserFields={profileUserFields} namePage={namePage}/>
-            <S.mainTitle>Мои товары</S.mainTitle>
+          <UserProfile
+            profileUserData={profileUserData}
+            profileUserFields={profileUserFields}
+            namePage={namePage}
+          />
+          <S.mainTitle>Мои товары</S.mainTitle>
           <S.contentCards>
             <AdsBigArr adsArr={myAdsData}></AdsBigArr>
           </S.contentCards>

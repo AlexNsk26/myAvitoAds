@@ -1,6 +1,7 @@
 export function GetPageName() {
   const urlPath = new URL(document.URL).pathname
-  const pageName = urlPath
+  const pageNames = urlPath.split('/')
+  const pageName = pageNames[1]
     .split('')
     .filter((value) => !(value === '/'))
     .join('')
@@ -8,7 +9,7 @@ export function GetPageName() {
 }
 
 export function IsLogin() {
-  return (sessionStorage.getItem('tokens') && localStorage.getItem('loginData'))
+  return sessionStorage.getItem('tokens') && localStorage.getItem('loginData')
     ? true
     : false
 }

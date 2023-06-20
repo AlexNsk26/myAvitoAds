@@ -42,6 +42,11 @@ const pageStyles = {
       padding: 85px 0px 84px;
     }
   `,
+  changeAds: css`
+    background-color: #c4c4c4;
+    height: 100vh;
+    max-width: 100%;
+  `,
 }
 export const mainContainer = styled.div`
   max-width: 1178px;

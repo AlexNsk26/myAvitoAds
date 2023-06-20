@@ -97,6 +97,7 @@ function LoginForm() {
           })
           .then((result) => {
             sessionStorage.setItem('tokens', result)
+            console.log(result)
           })
       }, 30000)
       navigate('/profileUser')

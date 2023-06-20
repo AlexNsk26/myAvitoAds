@@ -9,7 +9,7 @@ function OneSmallAds({ url = '', alt = '', id }) {
   )
 }
 function OneCircleAdsMob(onClick, idActive, { id, url = '' }) {
-  return <S.imgCircleMob data-id={id} onClick={(e)=>onClick(e)} key={id} active={id === idActive} />
+  return <S.imgCircleMob data-id={id} onClick={(e)=>onClick(e)} key={id} activeAds={id === idActive} />
 }
 export function SmallAdsBar({ arrSmallImg = [] }) {
   return arrSmallImg.map((img) => OneSmallAds(img))

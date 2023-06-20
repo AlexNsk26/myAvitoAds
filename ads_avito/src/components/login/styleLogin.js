@@ -149,12 +149,13 @@ export const btnGroup = styled.div`
   gap: 10px;
 `
 export const errorGroup = styled.div`
+  padding-top: 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
 `
 export const error = styled.p`
-color: red;
+  color: red;
 `
 
 export const errorStatus = styled.h4``

@@ -18,12 +18,14 @@ function HeaderBtnGroup({ isLogin = false }) {
       {isLogin && (
         <S.groupButtonHeader>
           <Button.s16l.blue
+          onClick={() => navigate('/changeAds/1')}
             reg={{ width: '230px', height: '40px' }}
             id="btputAd"
           >
             Разместить Объявление
           </Button.s16l.blue>
           <Button.s16l.blue
+            onClick={() => navigate('/profileUser')}
             reg={{ width: '171px', height: '40px' }}
             id="btputAd"
           >

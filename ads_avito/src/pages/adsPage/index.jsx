@@ -21,6 +21,7 @@ import LeftBlock from '../../components/adsBlockLeft/adsBlockLeft'
 import {
   useGetAdsByIdQuery,
   useGetAllComByIdAdsQuery,
+  usePostComByIdAdsMutation,
 } from '../../services/queryApi'
 
 import {
@@ -40,6 +41,8 @@ function AdsPage() {
   const { idAds } = useParams()
   const navigate = useNavigate()
   const [showComments, setShowComments] = useState(false)
+
+
   const {
     data: dataAdsById,
     error: errorDataAdsById,
@@ -49,15 +52,18 @@ function AdsPage() {
     data: dataCommentsAdsById,
     error: errorDataCommentsAdsById,
     isLoading: isLoadingDataCommentsAdsById,
+    refetch,
   } = useGetAllComByIdAdsQuery(idAds)
-  console.log(dataCommentsAdsById)
+
   return (
     <Wrapper.Container>
       {showComments && (
         <AdsCommentForm
+          idAds={idAds}
           dataComments={dataCommentsAdsById}
           isLogin={IsLogin()}
           setShowComments={setShowComments}
+          refetchComments={refetch}
         />
       )}
       <Header>

@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const BASE_URL = 'http://127.0.0.1:8090/'
 const DATA_TAG_ADS = { type: 'allAds', id: 'LIST' }
+const DATA_TAG_ADS_MY = { type: 'allAdsMy', id: 'LIST' }
 const DATA_TAG_USERS = { type: 'allUsers', id: 'LIST' }
 const DATA_TAG_COMMENTS = { type: 'commentsById', id: 'LIST' }
 
@@ -13,7 +14,6 @@ export const AvitoQueryApi = createApi({
       const { access_token = '', token_type = '' } = JSON.parse(
         sessionStorage.getItem('tokens') ?? '{}'
       )
-      console.log(access_token)
       headers.set('Content-Type', 'application/json')
       headers.set('Authorization', `${token_type} ${access_token}`)
       return headers
@@ -64,6 +64,22 @@ export const AvitoQueryApi = createApi({
         ...result.map(({ id }) => ({ type: DATA_TAG_ADS.type, id })),
       ],
     }),
+    postNewAdsText: builder.query({
+      query: ({ title, description, price }) => ({
+        url: 'adstext',
+        method: 'POST',
+        body: JSON.stringify({ title, description, price }),
+      }),
+      providesTags: 'newAdsText',
+    }),
+    getAllAdsMy: builder.query({
+      query: () => ({
+        url: 'ads/me',
+      }),
+      providesTags: (result = []) => [
+        ...result.map(({ id }) => ({ type: DATA_TAG_ADS_MY.type, id })),
+      ],
+    }),
     getAdsById: builder.query({
       query: (id) => ({
         url: `ads/${id}`,
@@ -74,9 +90,27 @@ export const AvitoQueryApi = createApi({
       query: (id) => ({
         url: `ads/${id}/comments`,
       }),
-      providesTags: (result = []) => [
-        ...result.map(({ id }) => ({ type: DATA_TAG_COMMENTS.type, id })),
-      ],
+      providesTags: (result = []) => {
+        console.log(result)
+        return [
+          ...result.map(({ id }) => ({ type: DATA_TAG_COMMENTS.type, id })),
+        ]
+      },
+    }),
+    postComByIdAds: builder.query({
+      query: ({ id, text }) => ({
+        url: `ads/${id}/comments`,
+        method: 'POST',
+        body: JSON.stringify({ text }),
+      }),
+    }),
+    postLoadImg: builder.query({
+      query: ({ id, imgBin }) => ({
+        url: `ads/${id}/image`,
+        method: 'POST',
+        body: imgBin,
+      }),
+      providesTags: 'newAdsText',
     }),
   }),
 })
@@ -86,6 +120,9 @@ export const {
   usePostSignUpQuery,
   useGetAllAdsQuery,
   useGetAllUsersQuery,
+  useGetAllAdsMyQuery,
   useGetAdsByIdQuery,
   useGetAllComByIdAdsQuery,
+  usePostComByIdAdsQuery,
+  usePostNewAdsTextQuery,
 } = AvitoQueryApi

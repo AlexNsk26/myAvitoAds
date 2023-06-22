@@ -8,10 +8,12 @@ function AdsChangeForm({
   stateParams,
   isLoading,
   errorNewAds,
+  LoadImgMutation,
 }) {
   return (
     <ModalBlock type={type}>
       <FormChange
+        LoadImgMutation={LoadImgMutation}
         idAds={idAds}
         errorNewAds={errorNewAds}
         stateParams={stateParams}

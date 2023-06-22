@@ -10,7 +10,10 @@ import AdsChangeForm from '../../components/adsChange/adsChange'
 import Footer from '../../components/footer/footer'
 import { GetPageName } from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
-import { usePostNewAdsTextQuery } from '../../services/queryApi'
+import {
+  usePostNewAdsTextQuery,
+  usePostLoadImgMutation,
+} from '../../services/queryApi'
 import {
   myAdsData,
   profileUserData,
@@ -23,15 +26,21 @@ function ChangeFormAds() {
   const navigate = useNavigate()
   const { type } = useParams()
   const [skipNewAds, setSkipNewAds] = useState(true)
+  const [skipAddImg, setSkipAddImg] = useState(true)
+  const [imgBin, setImgBin] = useState(undefined)
   const [title, setTitle] = useState(undefined)
   const [description, setDescription] = useState(undefined)
   const [price, setPrice] = useState(undefined)
   const stateParams = {
     skip: { skipNewAds, setSkipNewAds },
+    skipImg: { skipAddImg, setSkipAddImg },
+    img: { imgBin, setImgBin },
     title: { title, setTitle },
+    img: { imgBin, setImgBin },
     description: { description, setDescription },
     price: { price, setPrice },
   }
+
   const {
     data: dataNewAds,
     error: errorNewAds,
@@ -40,9 +49,14 @@ function ChangeFormAds() {
     { title, description, price },
     { skip: skipNewAds }
   )
+
+  const [
+    LoadImgMutation,
+    { data: dataImgBin, error: errorImgBin, isLoading: isLoadingImgBin },
+  ] = usePostLoadImgMutation()
   useEffect(() => {
     if (dataNewAds) {
-      navigate(-1)
+      //setSkipNewAds(true)
     }
   }, [dataNewAds])
   const isLoading = isLoadingNewAds
@@ -51,6 +65,7 @@ function ChangeFormAds() {
       <Wrapper.MainDiv>
         <Wrapper.MainContainer page={namePage}>
           <AdsChangeForm
+            LoadImgMutation={LoadImgMutation}
             stateParams={stateParams}
             type={type === '1' ? 'new' : 'edit'}
             isLoading={isLoading}

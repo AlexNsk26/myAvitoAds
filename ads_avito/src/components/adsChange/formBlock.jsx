@@ -69,7 +69,14 @@ function FormBlockPrice({ Price }) {
     </S.formBlock>
   )
 }
-function FormChange({ type, stateParams, isLoading, errorNewAds, idAds }) {
+function FormChange({
+  type,
+  stateParams,
+  isLoading,
+  errorNewAds,
+  idAds,
+  LoadImgMutation,
+}) {
   const DisabledBtn = () => {
     if (
       stateParams.description.description &&
@@ -85,7 +92,12 @@ function FormChange({ type, stateParams, isLoading, errorNewAds, idAds }) {
     <S.modalForm id="formNewArt" action="#">
       <FormBlockName Title={stateParams.title} />
       <FormBlockDescr Description={stateParams.description} />
-      <FormBlockPic />
+      <FormBlockPic
+        idAds={idAds}
+        LoadImgMutation={LoadImgMutation}
+        ImgBin={stateParams.img}
+        skipImg={stateParams.skipImg}
+      />
       <FormBlockPrice Price={stateParams.price} />
       <SaveBtn
         disabled={DisabledBtn()}

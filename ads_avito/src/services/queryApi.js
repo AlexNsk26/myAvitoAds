@@ -104,13 +104,14 @@ export const AvitoQueryApi = createApi({
         body: JSON.stringify({ text }),
       }),
     }),
-    postLoadImg: builder.query({
+    postLoadImg: builder.mutation({
       query: ({ id, imgBin }) => ({
         url: `ads/${id}/image`,
         method: 'POST',
+        headers: { 'Content-Type': 'multipart/form-data' },
         body: imgBin,
       }),
-      providesTags: 'newAdsText',
+      //providesTags: 'newImg',
     }),
   }),
 })
@@ -125,4 +126,5 @@ export const {
   useGetAllComByIdAdsQuery,
   usePostComByIdAdsQuery,
   usePostNewAdsTextQuery,
+  usePostLoadImgMutation,
 } = AvitoQueryApi

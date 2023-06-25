@@ -60,6 +60,15 @@ export const AvitoQueryApi = createApi({
       }),
       providesTags: 'currentUser',
     }),
+    patchCurrentUser: builder.mutation({
+      query: (body) => ({
+        url: 'user',
+        headers: { 'Content-Type': 'application/json' },
+        method: 'PATCH',
+        body: JSON.stringify(body),
+      }),
+      //invalidatesTags: [{ type: 'AdsById' }],
+    }),
     getAllAds: builder.query({
       query: () => ({
         url: 'ads',
@@ -92,7 +101,7 @@ export const AvitoQueryApi = createApi({
         url: `ads/${id}`,
         headers: { 'Content-Type': 'application/json' },
       }),
-      providesTags: 'AdsById',
+      providesTags: ['AdsById'],
     }),
     getAllComByIdAds: builder.query({
       query: (id) => ({
@@ -146,7 +155,7 @@ export const AvitoQueryApi = createApi({
         method: 'PATCH',
         body: JSON.stringify({ title, description, price }),
       }),
-      //invalidatesTags: [{ type: 'AdsById' }],
+      invalidatesTags: ['AdsById'],
     }),
   }),
 })
@@ -159,9 +168,11 @@ export const {
   useGetAllAdsMyQuery,
   useGetAdsByIdQuery,
   useGetAllComByIdAdsQuery,
+  useGetCurrentUserQuery,
   usePostComByIdAdsQuery,
   usePostNewAdsTextQuery,
   usePostLoadImgMutation,
   useDeleteAdsByIdMutation,
   usePatchAdsByIdMutation,
+  usePatchCurrentUserMutation,
 } = AvitoQueryApi

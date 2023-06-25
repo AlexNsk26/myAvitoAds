@@ -59,3 +59,51 @@ export const periodsM = {
   10: 'ноября',
   11: 'декабря',
 }
+export const CombineAllAdsData = (arrAdsData = [], arrUsersData = []) => {
+  return arrAdsData.map((ads) => {
+    const { id, title, price, user, created_on, images } = ads
+    return {
+      id,
+      title,
+      price,
+      place: user.city,
+      date: ConvertDate(created_on),
+      src: images[0]?.url,
+    }
+  })
+}
+
+export const profileUserFields = [
+  {
+    id: '1',
+    for: 'fname',
+    label: 'Имя',
+    idInp: 'settings-fname',
+    value: '',
+    placeholder: 'Иван',
+  },
+  {
+    id: '2',
+    for: 'lname',
+    label: 'Фамилия',
+    idInp: 'settings-lname',
+    value: '',
+    placeholder: 'Иванов',
+  },
+  {
+    id: '3',
+    for: 'city',
+    label: 'Город',
+    idInp: 'settings-city',
+    value: '',
+    placeholder: 'Москва',
+  },
+  {
+    id: '4',
+    for: 'phone',
+    label: 'Телефон',
+    idInp: 'settings-phone',
+    value: '',
+    placeholder: '+7 xxx xxx-xx-xx',
+  },
+]

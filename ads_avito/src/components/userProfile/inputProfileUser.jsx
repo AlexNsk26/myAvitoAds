@@ -1,19 +1,29 @@
 import * as S from './userProfileStyle'
-function InputFld( props ) {
+
+function InputFld({ field, complianceInputs, stateParams }) {
   return (
-    <S.settingsDiv key={props.id}>
-      <S.settingsLabel for={props.for}>{props.label}</S.settingsLabel>
+    <S.settingsDiv key={field.id}>
+      <S.settingsLabel for={field.for}>{field.label}</S.settingsLabel>
       <S.settingsInput
-        id={props.idInp}
-        name={props.for}
+        onChange={(e) =>
+          stateParams[field.for].func(e.target.value)
+        }
+        id={field.idInp}
+        name={field.for}
         type="text"
-        value={props.value}
-        placeholder={props.placeholder}
+        value={
+          stateParams[field.for].fieldState
+            ? stateParams[field.for].fieldState
+            : complianceInputs[field.for]
+        }
+        placeholder={field.placeholder}
       />
     </S.settingsDiv>
   )
 }
- function GetInpFields({arrFields}) {
-    return arrFields.map((field)=>InputFld(field))
- }
- export default GetInpFields
+function GetInpFields({ arrFields, loginData, complianceInputs, stateParams }) {
+  return arrFields.map((field) =>
+    InputFld({ field, complianceInputs, stateParams })
+  )
+}
+export default GetInpFields

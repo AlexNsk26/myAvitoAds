@@ -33,13 +33,13 @@ export function RightBlock({
   setShowComments,
   DeleteAdsByIdMutation,
   idAds,
-  isLoading
+  isLoading,
 }) {
   const MyAds = (adsUserId) => {
     const myUserId = localStorage.getItem('loginData')
       ? JSON.parse(localStorage.getItem('loginData')).id
       : undefined
-    return adsUserId === myUserId
+    return adsUserId === myUserId && isLogin
   }
   return (
     <AdsBlockRight>
@@ -52,9 +52,13 @@ export function RightBlock({
         />
         <RightBlockPrice price={adsPrice} />
         {MyAds(authorInfo?.id) ? (
-          <GroupBtnEditAds isLoading={isLoading} idAds={idAds} DeleteAdsByIdMutation={DeleteAdsByIdMutation} />
+          <GroupBtnEditAds
+            isLoading={isLoading}
+            idAds={idAds}
+            DeleteAdsByIdMutation={DeleteAdsByIdMutation}
+          />
         ) : (
-          <PhoneSeller  phoneNum={phoneNum} />
+          <PhoneSeller phoneNum={phoneNum} />
         )}
         <AuthorContent authorCont={authorInfo} />
       </AdsContentRight>

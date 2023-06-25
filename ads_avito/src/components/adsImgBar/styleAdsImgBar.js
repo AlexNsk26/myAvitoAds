@@ -22,7 +22,7 @@ export const articleImgBarImg = styled.img`
   object-fit: cover;
 `
 export const imgCircleMob = styled.div`
-  background-color: ${({ active }) => (active ? '#ffffff' : '')};
+  background-color: ${({ activeAds }) => (activeAds ? '#ffffff' : '')};
   &:active {
     background-color: #ffffff;
   }

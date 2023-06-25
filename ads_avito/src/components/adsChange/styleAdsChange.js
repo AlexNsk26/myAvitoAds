@@ -356,7 +356,7 @@ export const picImgGroup = styled.div`
 export const picImg = styled.img`
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
   z-index: 2;
@@ -367,6 +367,18 @@ export const picImg = styled.img`
     -o-object-fit: cover;
     object-fit: cover;
   }
+`
+export const inputFile = styled.input`
+  position: absolute;
+  z-index: auto;
+  opacity: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+`
+export const labelFile = styled.label`
+  height: 100%;
+  width: 100%;
 `
 export const picImgCover = styled.div`
   position: absolute;

@@ -72,6 +72,11 @@ export const cardPrice = styled.p`
   font-weight: 500;
   line-height: 33px;
   margin-bottom: 10px;
+  &::after {
+    content: '   ₽';
+    font-size: 18px;
+    font-weight: 400;
+  }
   @media screen and (max-width: 590px) {
     font-size: 16px;
     line-height: 24px;
@@ -81,6 +86,7 @@ export const cardDate = styled.p`
   font-size: 16px;
   line-height: 21px;
   color: #5f5f5f;
+
   @media screen and (max-width: 590px) {
     font-size: 12px;
     line-height: 16px;

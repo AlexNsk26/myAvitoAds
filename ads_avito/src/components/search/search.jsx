@@ -1,10 +1,11 @@
 import * as S from './searchStyle'
 import { Button } from '../button/button'
 
-function SearchForm() {
+function SearchForm({ setFind, setRender }) {
   return (
-    <S.searchForm action="#">
+    <S.searchForm onSubmit={(e) => e.preventDefault()} action="#">
       <S.searchTextInput
+        onC
         type="search"
         placeholder="Поиск по объявлениям"
         name="search"
@@ -15,7 +16,13 @@ function SearchForm() {
         name="search-mob"
       />
       <S.searchBtn_group>
-        <Button.s16d.blue reg={{width:"158px", height:"50px"}}>
+        <Button.s16d.blue
+          onClick={() => {
+            setFind(true)
+            setRender((prev) => !prev)
+          }}
+          reg={{ width: '158px', height: '50px' }}
+        >
           Найти
         </Button.s16d.blue>
       </S.searchBtn_group>

@@ -1,4 +1,5 @@
 import * as S from './styleAdsBlockRight'
+import { useState } from 'react'
 import {
   AdsContainer,
   AdsBlockLeft,
@@ -26,18 +27,38 @@ export function RightBlock({
   articleInfo,
   authorInfo,
   namePage,
-  phoneNumHide,
+  phoneNum,
+  dataComments,
+  isLogin,
+  setShowComments,
+  DeleteAdsByIdMutation,
+  idAds,
+  isLoading,
 }) {
+  const MyAds = (adsUserId) => {
+    const myUserId = localStorage.getItem('loginData')
+      ? JSON.parse(localStorage.getItem('loginData')).id
+      : undefined
+    return adsUserId === myUserId && isLogin
+  }
   return (
     <AdsBlockRight>
       <AdsContentRight>
         <RightBlockTitle adsName={adsName} />
-        <ArticleInfo dataInfo={articleInfo} />
+        <ArticleInfo
+          setShowComments={setShowComments}
+          dataComments={dataComments}
+          dataInfo={articleInfo}
+        />
         <RightBlockPrice price={adsPrice} />
-        {namePage === 'MyAdsPage' ? (
-          <GroupBtnEditAds />
+        {MyAds(authorInfo?.id) ? (
+          <GroupBtnEditAds
+            isLoading={isLoading}
+            idAds={idAds}
+            DeleteAdsByIdMutation={DeleteAdsByIdMutation}
+          />
         ) : (
-          <PhoneSeller phoneNum={phoneNumHide} />
+          <PhoneSeller phoneNum={phoneNum} />
         )}
         <AuthorContent authorCont={authorInfo} />
       </AdsContentRight>

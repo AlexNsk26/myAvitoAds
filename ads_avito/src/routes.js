@@ -1,9 +1,10 @@
 import { Routes, Route, useParams } from 'react-router-dom'
-import Main from './pages/main'
+import Main from './pages/mainPage/index'
 import ProfileUserPage from './pages/profilePage'
 import ProfileSellerPage from './pages/profileSellerPage'
-import MyAdsPage from './pages/MyAdsPage'
+import ChangeFormAds from './pages/newAdsPage'
 import AdsPage from './pages/adsPage'
+import LoginPage from './pages/loginPage'
 
 export function AppRoutes() {
   return (
@@ -11,8 +12,10 @@ export function AppRoutes() {
       <Route path="/" element={<Main />} />
       <Route path="/profileUser" element={<ProfileUserPage />} />
       <Route path="/profileSeller" element={<ProfileSellerPage />} />
-      <Route path="/MyAdsPage" element={<MyAdsPage />} />
-      <Route path="/AdsPage" element={<AdsPage />} />
+      <Route path="/changeAds/:type/:id" element={<ChangeFormAds />} />
+      <Route path="/AdsPage/:idAds" element={<AdsPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   )
 }
+/* <Route path="/MyAdsPage" element={<MyAdsPage />} /> */

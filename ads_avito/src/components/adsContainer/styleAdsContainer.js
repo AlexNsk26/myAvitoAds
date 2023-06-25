@@ -5,7 +5,7 @@ export const mainArticle = styled.div`
   max-width: 1178px;
   //padding: 0 0 70px;
   margin: 0 auto;
-  padding: 77px  5px 70px;
+  padding: 77px 5px 70px;
   @media screen and (max-width: 768px) {
     max-width: 1178px;
     width: 100%;
@@ -22,7 +22,7 @@ export const articleContent = styled.div`
   align-items: top;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center;
+  //justify-content: center;
   @media screen and (max-width: 768px) {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -158,7 +158,6 @@ export const articleImgBar = styled.div`
 `
 export const articleImgBarMob = styled.div`
   display: none;
-
   @media screen and (max-width: 768px) {
     display: block;
     width: 68px;

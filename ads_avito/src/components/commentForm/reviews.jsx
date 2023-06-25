@@ -1,12 +1,14 @@
 import * as S from './styleCommentForm'
+import { ConvertDate } from '../commonFunctions/commonFunc'
+import { BASE_URL } from '../../services/queryApi'
 
-function Review({ reviewName, reviewDate, reviewText }) {
+function Review({ reviewName, reviewDate, reviewText,avatar }) {
   return (
     <S.modalReview>
       <S.reviewItem>
         <S.reviewLeft>
           <S.reviewImgDiv>
-            <S.reviewImg src="" alt="" />
+            <S.reviewImg src={avatar} alt="" />
           </S.reviewImgDiv>
         </S.reviewLeft>
         <S.reviewRight>
@@ -25,9 +27,10 @@ function ArrReviews({ arrRev = [] }) {
   return arrRev.map((review) => (
     <Review
       key={review.id}
-      reviewName={review.reviewName}
-      reviewDate={review.reviewDate}
-      reviewText={review.reviewText}
+      reviewName={review.author.name}
+      reviewDate={ConvertDate(review.created_on)}
+      reviewText={review.text}
+      avatar={BASE_URL+review.author.avatar}
     />
   ))
 }

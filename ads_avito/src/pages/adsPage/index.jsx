@@ -22,6 +22,7 @@ import {
   useGetAdsByIdQuery,
   useGetAllComByIdAdsQuery,
   usePostComByIdAdsMutation,
+  useDeleteAdsByIdMutation,
 } from '../../services/queryApi'
 
 import {
@@ -34,7 +35,7 @@ import {
   descr,
   phoneNumHide,
 } from '../../mockData/mockData'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function AdsPage() {
   const namePage = GetPageName()
@@ -42,19 +43,32 @@ function AdsPage() {
   const navigate = useNavigate()
   const [showComments, setShowComments] = useState(false)
 
-
   const {
     data: dataAdsById,
     error: errorDataAdsById,
     isLoading: isLoadingDataAdsById,
   } = useGetAdsByIdQuery(idAds)
+  const [
+    DeleteAdsByIdMutation,
+    {
+      data: dataDeleteAdsById,
+      error: errorDataDeleteAdsById,
+      isLoading: isLoadingDataDeleteAdsById,
+    },
+  ] = useDeleteAdsByIdMutation()
+
   const {
     data: dataCommentsAdsById,
     error: errorDataCommentsAdsById,
     isLoading: isLoadingDataCommentsAdsById,
     refetch,
   } = useGetAllComByIdAdsQuery(idAds)
-
+  const isLoading = isLoadingDataDeleteAdsById
+  useEffect(() => {
+    if (dataDeleteAdsById === null) {
+      navigate('/', { replace: true })
+    }
+  }, [dataDeleteAdsById])
   return (
     <Wrapper.Container>
       {showComments && (
@@ -80,6 +94,9 @@ function AdsPage() {
             <AdsContainer>
               <LeftBlock barImgs={dataAdsById.images} />
               <RightBlock
+                idAds={idAds}
+                isLoading={isLoading}
+                DeleteAdsByIdMutation={DeleteAdsByIdMutation}
                 adsName={dataAdsById?.title}
                 adsPrice={dataAdsById?.price}
                 articleInfo={{

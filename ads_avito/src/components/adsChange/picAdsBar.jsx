@@ -1,7 +1,15 @@
 import * as S from './styleAdsChange'
 import { useRef } from 'react'
+import { BASE_URL } from '../../services/queryApi'
 
-function AdsAddPic({ index, skipImg, setImgBin, LoadImgMutation, idAds }) {
+function AdsAddPic({
+  index,
+  skipImg,
+  setImgBin,
+  LoadImgMutation,
+  idAds,
+  srcImg,
+}) {
   const inputRef = useRef(null)
 
   const OnChangeFileBtnHandler = () => {
@@ -9,18 +17,13 @@ function AdsAddPic({ index, skipImg, setImgBin, LoadImgMutation, idAds }) {
     if (f) {
       const reader = new FileReader()
       reader.onload = function (evt) {
-        const metadata = `name: ${f.name}, type: ${f.type}, size: ${f.size}, contents:`
-        const contents = evt.target.result
+        //const metadata = `name: ${f.name}, type: ${f.type}, size: ${f.size}, contents:`
+        //const contents = evt.target.result
         //setImgBin(contents)
-        const fDataImg = new FormData()
-        fDataImg.append('file', contents)
-        console.log(contents)
-        console.log(fDataImg)
         LoadImgMutation({
           id: idAds,
-          imgBin: fDataImg,
+          imgBin: f,
         })
-        //console.log(metadata, contents)
       }
       reader.readAsDataURL(f)
     }
@@ -33,7 +36,7 @@ function AdsAddPic({ index, skipImg, setImgBin, LoadImgMutation, idAds }) {
         type="file"
         name="file"
       />
-      <S.picImg src="" alt="" />
+      <S.picImg src={BASE_URL+srcImg} alt="" />
       <S.picImgCover />
     </S.picImgGroup>
   )
@@ -44,11 +47,17 @@ function ArrAdsAddPic({
   setImgBin,
   LoadImgMutation,
   idAds,
+  arrImgBin,
 }) {
   let content = []
   for (let index = 1; index <= qItems; index++) {
     content.push(
       <AdsAddPic
+        srcImg={
+          arrImgBin.length > 0 && arrImgBin[index - 1]
+            ? arrImgBin[index - 1].url
+            : ''
+        }
         LoadImgMutation={LoadImgMutation}
         idAds={idAds}
         skipImg={skipImg}
@@ -60,7 +69,7 @@ function ArrAdsAddPic({
   return content
 }
 
-function FormBlockPic({ skipImg, ImgBin, LoadImgMutation, idAds }) {
+function FormBlockPic({ skipImg, ImgBin, LoadImgMutation, idAds, arrImgBin }) {
   return (
     <S.formBlock>
       <S.formPicTitle>
@@ -68,6 +77,7 @@ function FormBlockPic({ skipImg, ImgBin, LoadImgMutation, idAds }) {
         <S.formPicTitleQuantity>не более 5 фотографий</S.formPicTitleQuantity>
         <S.formNewArtPicBar>
           <ArrAdsAddPic
+            arrImgBin={arrImgBin}
             idAds={idAds}
             LoadImgMutation={LoadImgMutation}
             skipImg={skipImg.setSkipAddImg}

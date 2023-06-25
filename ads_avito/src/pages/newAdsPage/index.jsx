@@ -1,6 +1,8 @@
 import * as S from './styleNewAdsPage'
 
 import { useParams, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { adsByIdSelector, apiSelectorGetAdsById } from '../../store/selectors'
 import { Logo, LogoMob } from '../../components/logo/logo'
 import BackBtn from '../../components/backBtn/backBtn'
 import Header from '../../components/header/header'
@@ -13,6 +15,7 @@ import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import {
   usePostNewAdsTextQuery,
   usePostLoadImgMutation,
+  usePatchAdsByIdMutation,
 } from '../../services/queryApi'
 import {
   myAdsData,
@@ -24,13 +27,22 @@ import { useState, useEffect } from 'react'
 function ChangeFormAds() {
   const namePage = GetPageName()
   const navigate = useNavigate()
-  const { type } = useParams()
+  const { type, id: idAdsEdit } = useParams()
   const [skipNewAds, setSkipNewAds] = useState(true)
   const [skipAddImg, setSkipAddImg] = useState(true)
   const [imgBin, setImgBin] = useState(undefined)
   const [title, setTitle] = useState(undefined)
   const [description, setDescription] = useState(undefined)
   const [price, setPrice] = useState(undefined)
+  const state = useSelector((state) => state)
+  const adsByIdDataSelector = apiSelectorGetAdsById(state, idAdsEdit)?.data
+  useEffect(() => {
+    if (adsByIdDataSelector) {
+      setTitle(adsByIdDataSelector.title)
+      setDescription(adsByIdDataSelector.description)
+      setPrice(adsByIdDataSelector.price)
+    }
+  }, [])
   const stateParams = {
     skip: { skipNewAds, setSkipNewAds },
     skipImg: { skipAddImg, setSkipAddImg },
@@ -54,23 +66,37 @@ function ChangeFormAds() {
     LoadImgMutation,
     { data: dataImgBin, error: errorImgBin, isLoading: isLoadingImgBin },
   ] = usePostLoadImgMutation()
+  const [
+    PatchAdsByIdMutation,
+    {
+      data: dataPatchAdsById,
+      error: errorDataPatchAdsById,
+      isLoading: isLoadingDataPatchAdsById,
+    },
+  ] = usePatchAdsByIdMutation()
   useEffect(() => {
-    if (dataNewAds) {
-      //setSkipNewAds(true)
+    if (dataPatchAdsById) {
+      console.log(dataPatchAdsById)
     }
-  }, [dataNewAds])
+  }, [dataPatchAdsById])
   const isLoading = isLoadingNewAds
   return (
     <Wrapper.Container>
       <Wrapper.MainDiv>
         <Wrapper.MainContainer page={namePage}>
           <AdsChangeForm
+            PatchAdsByIdMutation={PatchAdsByIdMutation}
+            arrImgBin={
+              dataImgBin
+                ? dataImgBin?.images
+                : adsByIdDataSelector?.images ?? []
+            }
             LoadImgMutation={LoadImgMutation}
             stateParams={stateParams}
             type={type === '1' ? 'new' : 'edit'}
             isLoading={isLoading}
             errorNewAds={errorNewAds}
-            idAds={dataNewAds?.id}
+            idAds={dataNewAds ? dataNewAds?.id : adsByIdDataSelector?.id}
           />
         </Wrapper.MainContainer>
       </Wrapper.MainDiv>

@@ -12,7 +12,7 @@ export function AppRoutes() {
       <Route path="/" element={<Main />} />
       <Route path="/profileUser" element={<ProfileUserPage />} />
       <Route path="/profileSeller" element={<ProfileSellerPage />} />
-      <Route path="/changeAds/:type" element={<ChangeFormAds />} />
+      <Route path="/changeAds/:type/:id" element={<ChangeFormAds />} />
       <Route path="/AdsPage/:idAds" element={<AdsPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>

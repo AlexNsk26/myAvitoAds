@@ -76,6 +76,8 @@ function FormChange({
   errorNewAds,
   idAds,
   LoadImgMutation,
+  arrImgBin,
+  PatchAdsByIdMutation,
 }) {
   const DisabledBtn = () => {
     if (
@@ -88,11 +90,21 @@ function FormChange({
     }
     return true
   }
+  const saveParams = {
+    description: stateParams.description.description,
+    title: stateParams.title.title,
+    price: stateParams.price.price,
+  }
   return (
-    <S.modalForm id="formNewArt" action="#">
+    <S.modalForm
+      onSubmit={(e) => e.preventDefault()}
+      id="formNewArt"
+      action="#"
+    >
       <FormBlockName Title={stateParams.title} />
       <FormBlockDescr Description={stateParams.description} />
       <FormBlockPic
+        arrImgBin={arrImgBin}
         idAds={idAds}
         LoadImgMutation={LoadImgMutation}
         ImgBin={stateParams.img}
@@ -100,6 +112,8 @@ function FormChange({
       />
       <FormBlockPrice Price={stateParams.price} />
       <SaveBtn
+        saveParams={saveParams}
+        PatchAdsByIdMutation={PatchAdsByIdMutation}
         disabled={DisabledBtn()}
         type={type}
         setSkipNewAds={stateParams.skip.setSkipNewAds}

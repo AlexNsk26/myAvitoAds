@@ -356,7 +356,7 @@ export const picImgGroup = styled.div`
 export const picImg = styled.img`
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
   z-index: 2;

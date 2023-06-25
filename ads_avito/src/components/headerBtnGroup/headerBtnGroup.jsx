@@ -18,7 +18,7 @@ function HeaderBtnGroup({ isLogin = false }) {
       {isLogin && (
         <S.groupButtonHeader>
           <Button.s16l.blue
-          onClick={() => navigate('/changeAds/1')}
+          onClick={() => navigate('/changeAds/1/0')}
             reg={{ width: '230px', height: '40px' }}
             id="btputAd"
           >

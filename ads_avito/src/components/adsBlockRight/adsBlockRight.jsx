@@ -30,19 +30,31 @@ export function RightBlock({
   phoneNum,
   dataComments,
   isLogin,
-  setShowComments
+  setShowComments,
+  DeleteAdsByIdMutation,
+  idAds,
+  isLoading
 }) {
-
+  const MyAds = (adsUserId) => {
+    const myUserId = localStorage.getItem('loginData')
+      ? JSON.parse(localStorage.getItem('loginData')).id
+      : undefined
+    return adsUserId === myUserId
+  }
   return (
     <AdsBlockRight>
       <AdsContentRight>
         <RightBlockTitle adsName={adsName} />
-        <ArticleInfo setShowComments={setShowComments} dataComments={dataComments} dataInfo={articleInfo} />
+        <ArticleInfo
+          setShowComments={setShowComments}
+          dataComments={dataComments}
+          dataInfo={articleInfo}
+        />
         <RightBlockPrice price={adsPrice} />
-        {isLogin ? (
-          <GroupBtnEditAds />
+        {MyAds(authorInfo?.id) ? (
+          <GroupBtnEditAds isLoading={isLoading} idAds={idAds} DeleteAdsByIdMutation={DeleteAdsByIdMutation} />
         ) : (
-          <PhoneSeller phoneNum={phoneNum} />
+          <PhoneSeller  phoneNum={phoneNum} />
         )}
         <AuthorContent authorCont={authorInfo} />
       </AdsContentRight>

@@ -56,9 +56,9 @@ export const editBtnBlock = styled.div`
   display: flex;
   gap: 10px;
   @media screen and (max-width: 768px) {
-    flex-direction:column;
+    flex-direction: column;
     gap: 8px;
-      }
+  }
 `
 export const authorContentDiv = styled.div`
   margin-top: 34px;
@@ -96,6 +96,7 @@ export const authorContentDataDiv = styled.div`
 `
 
 export const authorContentDataName = styled.p`
+  cursor: pointer;
   font-size: 20px;
   line-height: 26px;
   font-weight: 600;

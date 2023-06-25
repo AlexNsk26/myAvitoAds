@@ -60,7 +60,7 @@ export function RightBlock({
         ) : (
           <PhoneSeller phoneNum={phoneNum} />
         )}
-        <AuthorContent authorCont={authorInfo} />
+        <AuthorContent userId={authorInfo?.id} authorCont={authorInfo} />
       </AdsContentRight>
     </AdsBlockRight>
   )

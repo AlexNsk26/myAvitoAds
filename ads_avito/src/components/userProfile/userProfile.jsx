@@ -10,6 +10,9 @@ import {
 } from '../../mockData/mockData'
 
 function UserProfile({
+  avatar,
+  sellerPhone,
+  sellerFields,
   profileUserData,
   profileUserFields,
   namePage,
@@ -57,12 +60,21 @@ function UserProfile({
           <S.profileSettings>
             <S.settingsLeft namePage={namePage}>
               <S.settingsImg>
-                <S.settingsProfileA href="" target="_self">
-                  <S.Img src="#" alt="" />
+                <S.settingsProfileA
+                  onClick={(e) => e.preventDefault()}
+                  href=""
+                  target="_self"
+                >
+                  <S.Img src={avatar} alt="avatar" />
                 </S.settingsProfileA>
               </S.settingsImg>
               {namePage === 'profileUser' && (
-                <S.settingsChangePhoto>Заменить</S.settingsChangePhoto>
+                <>
+                  <S.settingsChangePhoto for="file_input">
+                    Заменить
+                  </S.settingsChangePhoto>
+                  <S.settingsChangePhotoInput type="file" id="file_input" />
+                </>
               )}
             </S.settingsLeft>
             <S.settingsRight>
@@ -85,11 +97,11 @@ function UserProfile({
                   </S.saveProfileBtn>
                 </S.settingsForm>
               ) : (
-                <TxtFldGroup props={profileSellerFields} />
+                <TxtFldGroup sellerFields={sellerFields} />
               )}
               {namePage === 'profileSeller' && <ImgUser />}
               {namePage === 'profileSeller' && (
-                <PhoneSeller phoneNum={profileSellerPhone} />
+                <PhoneSeller phoneNum={sellerPhone} />
               )}
             </S.settingsRight>
           </S.profileSettings>

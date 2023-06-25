@@ -154,13 +154,17 @@ export const Img = styled.img`
   -o-object-fit: cover;
   object-fit: cover;
 `
-export const settingsChangePhoto = styled.a`
+export const settingsChangePhoto = styled.label`
   margin-top: 10px;
   margin-bottom: 30px;
   text-decoration: none;
   font-size: 16px;
+  cursor: pointer;
   line-height: 24px;
   color: #009ee4;
+`
+export const settingsChangePhotoInput = styled.input`
+display: none;
 `
 export const settingsRight = styled.div`
   width: 380px;

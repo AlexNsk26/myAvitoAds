@@ -1,6 +1,8 @@
+
 import * as S from './styleAdsBlockRight'
 
 function ArticleInfo({ setShowComments, dataInfo, dataComments = [] }) {
+
   const onClickCommentHandler = (e) => {
     e.preventDefault()
     setShowComments(true)

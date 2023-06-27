@@ -12,14 +12,14 @@ function AuthorContent({ authorCont, userId }) {
   return (
     <S.authorContentDiv>
       <S.authorImgDiv>
-        <S.authorImg src={BASE_URL + authorCont.avatar ?? ''} alt="" />
+        <S.authorImg src={BASE_URL + authorCont?.avatar ?? ''} alt="" />
       </S.authorImgDiv>
       <S.authorContentDataDiv>
         <S.authorContentDataName onClick={() => navigate(`/profileSeller/${userId}`)}>
-          {authorCont.name}
+          {authorCont?.name}
         </S.authorContentDataName>
         <S.authorContentDataAbout>{`Продает товары с ${ConvertDateUser(
-          authorCont.sells_from
+          authorCont?.sells_from
         )}`}</S.authorContentDataAbout>
       </S.authorContentDataDiv>
     </S.authorContentDiv>

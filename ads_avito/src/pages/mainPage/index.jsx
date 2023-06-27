@@ -22,9 +22,12 @@ import {
   useGetAllAdsQuery,
   useGetAllUsersQuery,
 } from '../../services/queryApi'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function Main() {
+  useEffect(() => {
+    GetTokensAccess()
+  }, [])
   const navigate = useNavigate()
   const [find, setFind] = useState(false)
   const [render, setRender] = useState(false)

@@ -96,7 +96,7 @@ function AdsPage() {
         <Wrapper.MainContainer page={namePage}>
           {!isLoadingDataAdsById && (
             <AdsContainer>
-              <LeftBlock barImgs={dataAdsById.images} />
+              <LeftBlock barImgs={dataAdsById?.images} />
               <RightBlock
                 idAds={idAds}
                 isLoading={isLoading}
@@ -104,13 +104,13 @@ function AdsPage() {
                 adsName={dataAdsById?.title}
                 adsPrice={dataAdsById?.price}
                 articleInfo={{
-                  date: ConvertDate(dataAdsById.created_on),
-                  city: dataAdsById.user.city ?? '',
+                  date: ConvertDate(dataAdsById?.created_on),
+                  city: dataAdsById?.user.city ?? '',
                 }}
                 dataComments={dataCommentsAdsById}
-                authorInfo={dataAdsById.user}
+                authorInfo={dataAdsById?.user}
                 namePage={namePage}
-                phoneNum={dataAdsById.user.phone}
+                phoneNum={dataAdsById?.user.phone}
                 isLogin={IsLogin()}
                 setShowComments={setShowComments}
               />

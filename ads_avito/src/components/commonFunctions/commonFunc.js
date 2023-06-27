@@ -117,31 +117,30 @@ export const profileUserFields = [
   },
 ]
 export function GetTokensAccess() {
-  const {
-    access_token,
-    refresh_token,
-    timerId: innerTimerId,
-    expireDate,
-  } = JSON.parse(sessionStorage.getItem('tokens'))
-  clearInterval(innerTimerId)
-  if (new Date() + 1000 * 60 * 2 > new Date(expireDate)) {
+  const tokensData = sessionStorage.getItem('tokens')
+    ? JSON.parse(sessionStorage.getItem('tokens'))
+    : {}
+  clearInterval(tokensData?.innerTimerId)
+
+  if (
+    tokensData &&
+    new Date().getTime() - new Date(tokensData.expireDate).getTime() >
+      1000 * 60 * 2
+  ) {
     sessionStorage.removeItem('tokens')
   } else {
     let timerId = setInterval(() => {
-      const {
-        access_token,
-        refresh_token,
-        timerId: innerTimerId,
-        expireDate,
-      } = JSON.parse(sessionStorage.getItem('tokens'))
+      const tokensData = sessionStorage.getItem('tokens')
+        ? JSON.parse(sessionStorage.getItem('tokens'))
+        : {}
       fetch(`${BASE_URL}auth/login`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_token,
-          refresh_token,
+          access_token: tokensData.access_token,
+          refresh_token: tokensData.refresh_token,
         }),
       })
         .then((response) => {
@@ -149,12 +148,18 @@ export function GetTokensAccess() {
           return data
         })
         .then((result) => {
-          const tokens = JSON.parse(result)
-          sessionStorage.setItem(
-            'tokens',
-            JSON.stringify({ ...tokens, expireDate: new Date(), timerId })
-          )
-          console.log(result)
+          const tokens = JSON.parse(result) ?? {}
+          if (Object.keys(tokens).find((elem) => elem === 'access_token')) {
+            sessionStorage.setItem(
+              'tokens',
+              JSON.stringify({ ...tokens, expireDate: new Date(), timerId })
+            )
+            console.log(result)
+            return
+          }
+          clearInterval(tokensData?.innerTimerId)
+          sessionStorage.removeItem('tokens')
+          
         })
     }, 30000)
   }

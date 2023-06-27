@@ -10,7 +10,7 @@ import * as Wrapper from '../../components/container/container'
 import MainSearch from '../../components/mainSearch/mainSearch'
 import AdsChangeForm from '../../components/adsChange/adsChange'
 import Footer from '../../components/footer/footer'
-import { GetPageName } from '../../components/commonFunctions/commonFunc'
+import { GetPageName, GetTokensAccess } from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import {
   usePostNewAdsTextQuery,
@@ -25,6 +25,9 @@ import {
 import { useState, useEffect } from 'react'
 
 function ChangeFormAds() {
+  useEffect(() => {
+    GetTokensAccess()
+  }, [])
   const namePage = GetPageName()
   const navigate = useNavigate()
   const { type, id: idAdsEdit } = useParams()
@@ -74,11 +77,11 @@ function ChangeFormAds() {
       isLoading: isLoadingDataPatchAdsById,
     },
   ] = usePatchAdsByIdMutation()
-  useEffect(() => {
+/*   useEffect(() => {
     if (dataPatchAdsById) {
       console.log(dataPatchAdsById)
     }
-  }, [dataPatchAdsById])
+  }, [dataPatchAdsById]) */
   const isLoading = isLoadingNewAds
   return (
     <Wrapper.Container>

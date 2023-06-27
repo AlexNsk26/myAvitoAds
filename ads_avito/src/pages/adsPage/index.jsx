@@ -11,6 +11,7 @@ import {
   GetPageName,
   IsLogin,
   ConvertDate,
+  GetTokensAccess
 } from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import { AdsContainer } from '../../components/adsContainer/adsContainer'
@@ -38,6 +39,9 @@ import {
 import { useState, useEffect } from 'react'
 
 function AdsPage() {
+  useEffect(() => {
+    GetTokensAccess()
+  }, [])
   const namePage = GetPageName()
   const { idAds } = useParams()
   const navigate = useNavigate()

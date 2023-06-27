@@ -62,7 +62,7 @@ function LoginForm() {
   useEffect(() => {
     if (dataLogin) {
       const { access_token, token_type } = dataLogin
-      sessionStorage.setItem('tokens', JSON.stringify(dataLogin))
+
       fetch(`${BASE_URL}user`, {
         method: 'GET',
         headers: {
@@ -77,7 +77,7 @@ function LoginForm() {
         .then((result) => {
           localStorage.setItem('loginData', result)
         })
-      setInterval(() => {
+/*       let timerId = setInterval(() => {
         const { access_token, refresh_token } = JSON.parse(
           sessionStorage.getItem('tokens')
         )
@@ -96,10 +96,18 @@ function LoginForm() {
             return data
           })
           .then((result) => {
-            sessionStorage.setItem('tokens', result)
+            const tokens = JSON.parse(result)
+            sessionStorage.setItem(
+              'tokens',
+              JSON.stringify({ ...tokens, expireDate: new Date(), timerId })
+            )
             console.log(result)
           })
-      }, 30000)
+      }, 30000)*/
+      sessionStorage.setItem(
+        'tokens',
+        JSON.stringify({ ...dataLogin, expireDate: new Date() })
+      ) 
       navigate('/profileUser')
     }
   }, [dataLogin])

@@ -2,6 +2,7 @@ import * as S from './styleAdsChange'
 import { useRef } from 'react'
 import { BASE_URL } from '../../services/queryApi'
 
+
 function AdsAddPic({
   index,
   skipImg,
@@ -70,6 +71,7 @@ function ArrAdsAddPic({
 }
 
 function FormBlockPic({ skipImg, ImgBin, LoadImgMutation, idAds, arrImgBin }) {
+
   return (
     <S.formBlock>
       <S.formPicTitle>

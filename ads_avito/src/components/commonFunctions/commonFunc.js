@@ -1,3 +1,6 @@
+import { Navigate } from 'react-router-dom'
+import { BASE_URL } from '../../services/queryApi'
+
 export function GetPageName() {
   const urlPath = new URL(document.URL).pathname
   const pageNames = urlPath.split('/')
@@ -72,6 +75,12 @@ export const CombineAllAdsData = (arrAdsData = [], arrUsersData = []) => {
     }
   })
 }
+export function ProtectedRoute({ children, redirectPath = '/', isAllowed }) {
+  if (IsLogin()) {
+    return children
+  }
+  return <Navigate to={redirectPath} replace />
+}
 
 export const profileUserFields = [
   {
@@ -107,3 +116,46 @@ export const profileUserFields = [
     placeholder: '+7 xxx xxx-xx-xx',
   },
 ]
+export function GetTokensAccess() {
+  const {
+    access_token,
+    refresh_token,
+    timerId: innerTimerId,
+    expireDate,
+  } = JSON.parse(sessionStorage.getItem('tokens'))
+  clearInterval(innerTimerId)
+  if (new Date() + 1000 * 60 * 2 > new Date(expireDate)) {
+    sessionStorage.removeItem('tokens')
+  } else {
+    let timerId = setInterval(() => {
+      const {
+        access_token,
+        refresh_token,
+        timerId: innerTimerId,
+        expireDate,
+      } = JSON.parse(sessionStorage.getItem('tokens'))
+      fetch(`${BASE_URL}auth/login`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_token,
+          refresh_token,
+        }),
+      })
+        .then((response) => {
+          const data = response.text()
+          return data
+        })
+        .then((result) => {
+          const tokens = JSON.parse(result)
+          sessionStorage.setItem(
+            'tokens',
+            JSON.stringify({ ...tokens, expireDate: new Date(), timerId })
+          )
+          console.log(result)
+        })
+    }, 30000)
+  }
+}

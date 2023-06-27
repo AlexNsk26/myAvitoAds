@@ -58,7 +58,7 @@ export const AvitoQueryApi = createApi({
         url: 'user',
         headers: { 'Content-Type': 'application/json' },
       }),
-      providesTags: 'currentUser',
+      providesTags: ['currentUser'],
     }),
     patchCurrentUser: builder.mutation({
       query: (body) => ({
@@ -101,6 +101,7 @@ export const AvitoQueryApi = createApi({
         url: `ads/${id}`,
         headers: { 'Content-Type': 'application/json' },
       }),
+      keepUnusedDataFor: 300,
       providesTags: ['AdsById'],
     }),
     getAllComByIdAds: builder.query({
@@ -157,6 +158,19 @@ export const AvitoQueryApi = createApi({
       }),
       invalidatesTags: ['AdsById'],
     }),
+    postLoadAvatarUser: builder.mutation({
+      query: ({ imgBin }) => {
+        const fDataImg = new FormData()
+        fDataImg.append('file', imgBin)
+        return {
+          url: `user/avatar`,
+          method: 'POST',
+          body: fDataImg,
+          formData: true,
+        }
+      },
+      invalidatesTags: ['currentUser'],
+    }),
   }),
 })
 
@@ -175,4 +189,5 @@ export const {
   useDeleteAdsByIdMutation,
   usePatchAdsByIdMutation,
   usePatchCurrentUserMutation,
+  usePostLoadAvatarUserMutation,
 } = AvitoQueryApi

@@ -8,7 +8,7 @@ import * as Wrapper from '../../components/container/container'
 import MainSearch from '../../components/mainSearch/mainSearch'
 import AdsBigArr from '../../components/adsBig/adsBig'
 import Footer from '../../components/footer/footer'
-import { GetPageName, CombineAllAdsData } from '../../components/commonFunctions/commonFunc'
+import { GetPageName, CombineAllAdsData, GetTokensAccess } from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import UserProfile from '../../components/userProfile/userProfile'
 import { useGetAllUsersQuery, useGetAllAdsQuery } from '../../services/queryApi'
@@ -23,6 +23,9 @@ import {
 } from '../../mockData/mockData'
 
 function ProfileSellerPage() {
+  useEffect(() => {
+    GetTokensAccess()
+  }, [])
   const namePage = GetPageName()
   const { userId } = useParams()
   const allAdsSelector = useSelector(getAllAdsSelector)
@@ -55,7 +58,7 @@ function ProfileSellerPage() {
         </MainSearch>
         <Wrapper.MainContainer page={namePage}>
           <UserProfile
-          avatar={BASE_URL+sellerUser?.avatar}
+          avatar={sellerUser?.avatar}
             sellerPhone={sellerUser?.phone}
             sellerFields={sellerUser}
             namePage={namePage}

@@ -1,16 +1,11 @@
 import styled from 'styled-components'
 
 export const StyledButton = styled('button')`
-  /* height: 52px; */
+
   width: ${(props) => (props.reg.width ? props.reg.width : `100%`)};
   height: ${(props) => (props.reg.height ? props.reg.height : `100%`)};
-  //min-height: max-content;
-  //min-width: max-content;
-  //padding: ${(props) => props.style.size.padding};
-  /* box-sizing: border-box; */
   border-radius: 6px;
 
-  /* border: 0px solid transparent; */
   border: ${(props) => props.style.border};
   background: ${(props) => props.style.color.bg.regular};
 
@@ -31,7 +26,6 @@ export const StyledButton = styled('button')`
   justify-content: center;
   align-items: center;
 
-  //font-family: 'StratosSkyeng', sans-serif;
   font-size: ${(props) => `${String(props.style.size.font)}px`};
   line-height: 150%;
   font-weight: 400;

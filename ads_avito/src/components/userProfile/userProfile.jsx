@@ -7,10 +7,6 @@ import { useRef } from 'react'
 import TxtFldGroup from './textFldProfileSeller'
 import { usePostLoadAvatarUserMutation } from '../../services/queryApi'
 import ImgUser from './imgUser'
-import {
-  profileSellerFields,
-  profileSellerPhone,
-} from '../../mockData/mockData'
 
 function UserProfile({
   avatar,

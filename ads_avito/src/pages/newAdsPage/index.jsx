@@ -1,27 +1,20 @@
 import * as S from './styleNewAdsPage'
 
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { adsByIdSelector, apiSelectorGetAdsById } from '../../store/selectors'
-import { Logo, LogoMob } from '../../components/logo/logo'
-import BackBtn from '../../components/backBtn/backBtn'
-import Header from '../../components/header/header'
+import { apiSelectorGetAdsById } from '../../store/selectors'
 import * as Wrapper from '../../components/container/container'
-import MainSearch from '../../components/mainSearch/mainSearch'
 import AdsChangeForm from '../../components/adsChange/adsChange'
 import Footer from '../../components/footer/footer'
-import { GetPageName, GetTokensAccess } from '../../components/commonFunctions/commonFunc'
-import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
+import {
+  GetPageName,
+  GetTokensAccess,
+} from '../../components/commonFunctions/commonFunc'
 import {
   usePostNewAdsTextQuery,
   usePostLoadImgMutation,
   usePatchAdsByIdMutation,
 } from '../../services/queryApi'
-import {
-  myAdsData,
-  profileUserData,
-  profileUserFields,
-} from '../../mockData/mockData'
 import { useState, useEffect } from 'react'
 
 function ChangeFormAds() {
@@ -29,7 +22,7 @@ function ChangeFormAds() {
     GetTokensAccess()
   }, [])
   const namePage = GetPageName()
-  const navigate = useNavigate()
+
   const { type, id: idAdsEdit } = useParams()
   const [skipNewAds, setSkipNewAds] = useState(true)
   const [skipAddImg, setSkipAddImg] = useState(true)
@@ -77,11 +70,7 @@ function ChangeFormAds() {
       isLoading: isLoadingDataPatchAdsById,
     },
   ] = usePatchAdsByIdMutation()
-/*   useEffect(() => {
-    if (dataPatchAdsById) {
-      console.log(dataPatchAdsById)
-    }
-  }, [dataPatchAdsById]) */
+
   const isLoading = isLoadingNewAds
   return (
     <Wrapper.Container>

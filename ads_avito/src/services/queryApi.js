@@ -14,7 +14,6 @@ export const AvitoQueryApi = createApi({
       const { access_token = '', token_type = '' } = JSON.parse(
         sessionStorage.getItem('tokens') ?? '{}'
       )
-      //headers.set('Content-Type', 'application/json')
       headers.set('Authorization', `${token_type} ${access_token}`)
       return headers
     },
@@ -67,7 +66,6 @@ export const AvitoQueryApi = createApi({
         method: 'PATCH',
         body: JSON.stringify(body),
       }),
-      //invalidatesTags: [{ type: 'AdsById' }],
     }),
     getAllAds: builder.query({
       query: () => ({
@@ -131,23 +129,16 @@ export const AvitoQueryApi = createApi({
         return {
           url: `ads/${id}/image`,
           method: 'POST',
-          /*            headers: {
-            'Content-Type': `multipart/form-data; boundary=${Math.random()
-              .toString()
-              .substr(2)}`,
-          }, */
           body: fDataImg,
           formData: true,
         }
       },
-      // providesTags: ['newImg'],
     }),
     deleteAdsById: builder.mutation({
       query: ({ id }) => ({
         url: `ads/${id}`,
         method: 'DELETE',
       }),
-      // providesTags: ['newImg'],
     }),
     patchAdsById: builder.mutation({
       query: ({ id, title, description, price }) => ({

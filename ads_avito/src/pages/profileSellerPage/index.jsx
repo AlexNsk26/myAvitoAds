@@ -1,6 +1,6 @@
 import * as S from './styleProfileSellerPage'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Logo, LogoMob } from '../../components/logo/logo'
 import BackBtn from '../../components/backBtn/backBtn'
 import Header from '../../components/header/header'
@@ -14,13 +14,6 @@ import UserProfile from '../../components/userProfile/userProfile'
 import { useGetAllUsersQuery, useGetAllAdsQuery } from '../../services/queryApi'
 import { useSelector } from 'react-redux'
 import { getAllAdsSelector } from '../../store/selectors'
-import { BASE_URL } from '../../services/queryApi'
-
-import {
-  myAdsData,
-  profileUserData,
-  profileUserFields,
-} from '../../mockData/mockData'
 
 function ProfileSellerPage() {
   useEffect(() => {
@@ -39,10 +32,7 @@ function ProfileSellerPage() {
     error: errorDataAdsAll,
     isLoading: isLoadingDataAdsAll,
   } = useGetAllAdsQuery()
-  //useEffect(()=>{},[dataAdsAll])
   console.log(allAdsSelector)
-  // console.log(dataAllUsers)
-  // console.log(dataAllUsers?.find((user) => user.id === Number(userId)))
   const sellerUser = dataAllUsers?.find((user) => user.id === Number(userId))
 
   return (

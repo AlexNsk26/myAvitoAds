@@ -10,7 +10,6 @@ import Footer from '../../components/footer/footer'
 import {
   GetPageName,
   IsLogin,
-  ConvertDate,
   GetTokensAccess,
 } from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
@@ -22,7 +21,6 @@ import {
 } from '../../services/queryApi'
 import { CombineAllAdsData } from '../../components/commonFunctions/commonFunc'
 import { profileUserFields } from '../../components/commonFunctions/commonFunc'
-import { myAdsData, profileUserData } from '../../mockData/mockData'
 
 function ProfileUserPage() {
   useEffect(() => {
@@ -59,7 +57,6 @@ function ProfileUserPage() {
     },
   ] = usePatchCurrentUserMutation()
 
-  // console.log(dataCurrentUser)
   const loginData = dataCurrentUser
     ? dataCurrentUser
     : JSON.parse(localStorage.getItem('loginData')) ?? {}

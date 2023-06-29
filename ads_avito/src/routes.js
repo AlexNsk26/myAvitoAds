@@ -27,4 +27,3 @@ export function AppRoutes() {
     </Routes>
   )
 }
-/* <Route path="/MyAdsPage" element={<MyAdsPage />} /> */

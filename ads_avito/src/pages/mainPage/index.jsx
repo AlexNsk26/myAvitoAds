@@ -1,7 +1,6 @@
 import * as S from './styleMainPage'
 import { Logo, LogoMob } from '../../components/logo/logo'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import SearchForm from '../../components/search/search'
 import Header from '../../components/header/header'
 import MainSearch from '../../components/mainSearch/mainSearch'
@@ -11,16 +10,12 @@ import Footer from '../../components/footer/footer'
 import {
   GetPageName,
   IsLogin,
-  ConvertDate,
   CombineAllAdsData,
   GetTokensAccess
 } from '../../components/commonFunctions/commonFunc'
-import { usersCitySelector } from '../../store/selectors'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import {
-  BASE_URL,
   useGetAllAdsQuery,
-  useGetAllUsersQuery,
 } from '../../services/queryApi'
 import { useState, useEffect } from 'react'
 

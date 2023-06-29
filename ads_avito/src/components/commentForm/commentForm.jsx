@@ -4,7 +4,6 @@ import ModalBlock from '../modalBlock/modalBlock'
 import NewCommentForm from './addComment'
 import ReviewsGroup from './reviews'
 import { usePostComByIdAdsQuery } from '../../services/queryApi'
-import { arrReviews } from '../../mockData/mockData'
 
 function AdsCommentForm({
   idAds,

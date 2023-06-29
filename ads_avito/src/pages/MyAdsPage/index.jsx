@@ -9,13 +9,10 @@ import Footer from '../../components/footer/footer'
 import { GetPageName } from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import { AdsContainer } from '../../components/adsContainer/adsContainer'
-
 import { RightBlock } from '../../components/adsBlockRight/adsBlockRight'
 import DescAds from '../../components/adsDescr/adsDescr'
 import LeftBlock from '../../components/adsBlockLeft/adsBlockLeft'
-import AdsChangeForm from '../../components/adsChange/adsChange'
 import AdsCommentForm from '../../components/commentForm/commentForm'
-import { useGetAdsByIdQuery, useGetAllComByIdAdsQuery } from '../../services/queryApi'
 import {
   barImgs,
   barImgsMob,

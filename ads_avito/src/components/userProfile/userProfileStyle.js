@@ -141,10 +141,6 @@ export const settingsImg = styled.div`
   height: 170px;
   border-radius: 50%;
   background-color: #f0f0f0;
-  /*   @media screen and (max-width: 580px) {
-    width: 132px;
-    height: 132px;
-  } */
 `
 export const settingsProfileA = styled.a``
 export const Img = styled.img`

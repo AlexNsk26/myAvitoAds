@@ -1,7 +1,6 @@
 import * as S from './styleAdsPage'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Logo, LogoMob } from '../../components/logo/logo'
-import mapSort from 'mapsort'
 import BackBtn from '../../components/backBtn/backBtn'
 import Header from '../../components/header/header'
 import * as Wrapper from '../../components/container/container'
@@ -22,20 +21,9 @@ import LeftBlock from '../../components/adsBlockLeft/adsBlockLeft'
 import {
   useGetAdsByIdQuery,
   useGetAllComByIdAdsQuery,
-  usePostComByIdAdsMutation,
   useDeleteAdsByIdMutation,
 } from '../../services/queryApi'
 
-import {
-  barImgs,
-  barImgsMob,
-  adsName,
-  articleInfo,
-  authorInfo,
-  adsPrice,
-  descr,
-  phoneNumHide,
-} from '../../mockData/mockData'
 import { useState, useEffect } from 'react'
 
 function AdsPage() {
@@ -124,8 +112,4 @@ function AdsPage() {
   )
 }
 export default AdsPage
-/* mapSort(
-            dataCommentsAdsById,
-            (value) => new Date(value),
-            (a, b) => a - b
-          ) */
+

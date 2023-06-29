@@ -5,7 +5,7 @@ import { Button } from '../button/button'
 function PhoneSeller({ phoneNum }) {
   const [hiddenPhone, setHiddenPhone] = useState(true)
   const GetHiddenPhone = (phone = '') => {
-    const prePhoneParts = phone.split(' ')
+    const prePhoneParts = phone ? phone.split(' ') : ['']
     let phoneParts = []
     prePhoneParts.forEach((value, index) =>
       phoneParts.push(

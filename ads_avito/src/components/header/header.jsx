@@ -1,4 +1,3 @@
-//import { Children } from 'react'
 import * as S from './headerStyle'
 
 function Header({children}) {

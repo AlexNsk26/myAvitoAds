@@ -5,8 +5,6 @@ import { BASE_URL } from '../../services/queryApi'
 
 function AdsAddPic({
   index,
-  skipImg,
-  setImgBin,
   LoadImgMutation,
   idAds,
   srcImg,
@@ -18,9 +16,6 @@ function AdsAddPic({
     if (f) {
       const reader = new FileReader()
       reader.onload = function (evt) {
-        //const metadata = `name: ${f.name}, type: ${f.type}, size: ${f.size}, contents:`
-        //const contents = evt.target.result
-        //setImgBin(contents)
         LoadImgMutation({
           id: idAds,
           imgBin: f,

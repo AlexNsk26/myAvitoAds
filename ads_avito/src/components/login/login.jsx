@@ -26,7 +26,6 @@ const GetInputParams = () => {
 }
 function LoginForm() {
   const [signUp, setSignUp] = useState(false)
-  const [getTokens, setGetTokens] = useState(false)
   const [paswNotEqual, setPaswNotEqual] = useState(false)
   const [loginDataReq, setLoginDataReq] = useState({})
   const navigate = useNavigate()
@@ -77,33 +76,7 @@ function LoginForm() {
         .then((result) => {
           localStorage.setItem('loginData', result)
         })
-/*       let timerId = setInterval(() => {
-        const { access_token, refresh_token } = JSON.parse(
-          sessionStorage.getItem('tokens')
-        )
-        fetch(`${BASE_URL}auth/login`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            access_token,
-            refresh_token,
-          }),
-        })
-          .then((response) => {
-            const data = response.text()
-            return data
-          })
-          .then((result) => {
-            const tokens = JSON.parse(result)
-            sessionStorage.setItem(
-              'tokens',
-              JSON.stringify({ ...tokens, expireDate: new Date(), timerId })
-            )
-            console.log(result)
-          })
-      }, 30000)*/
+
       sessionStorage.setItem(
         'tokens',
         JSON.stringify({ ...dataLogin, expireDate: new Date() })

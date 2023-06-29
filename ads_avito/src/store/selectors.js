@@ -8,11 +8,3 @@ const apiSelectorGetAllAds = AvitoQueryApi.endpoints.getAllAds.select()
 )
 export const apiSelectorGetAdsById = (state,idAds) =>
   AvitoQueryApi.endpoints.getAdsById.select(idAds)(state)
-/* export const usersCitySelector = createSelector(
-  apiSelectorGetUsersAll,
-  (result = []) => result?.data
-)
-export const adsByIdSelector = createSelector(
-  (state,idAds)=>apiSelectorGetAdsById,
-  (result) => result.data
-) */

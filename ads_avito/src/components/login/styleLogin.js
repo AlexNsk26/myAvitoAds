@@ -53,11 +53,9 @@ export const imgLogo = styled.img`
   width: 140px;
   height: auto;
 
-  //src: url('/img/logoLogin.png');
   @media screen and (max-width: 768px) {
     width: 120px;
     height: auto;
-    //src: url('./img/logoLoginMob.png');
   }
 `
 export const inputFld = styled.input`

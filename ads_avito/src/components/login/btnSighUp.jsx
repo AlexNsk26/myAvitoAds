@@ -1,7 +1,6 @@
 import * as S from './styleLogin'
 import { Button } from '../button/button'
 import { reg, mob } from './params'
-import { AvitoQueryApi } from '../../services/queryApi'
 
 export function BtnSignUpDark({ clickBtnSignUp, disabled }) {
   return (
@@ -19,7 +18,6 @@ export function BtnSignUpDark({ clickBtnSignUp, disabled }) {
 export function BtnSignUpLight({ setSignUp, setLoginDataReq, disabled }) {
   const onClickHandler = () => {
     setLoginDataReq({ skip: true })
-    //dispatch(AvitoQueryApi.endpoints.postTokensLogin.initiate({}))
 
     setSignUp((prev) => !prev)
   }

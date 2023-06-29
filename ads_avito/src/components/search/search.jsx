@@ -29,5 +29,4 @@ function SearchForm({ setFind, setRender }) {
     </S.searchForm>
   )
 }
-// <S.searchBtn_hov02>Найти</S.searchBtn_hov02>
 export default SearchForm

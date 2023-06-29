@@ -27,7 +27,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Configuration
 
-To test the application, you need to install Swagger located at:[здесь](https://drive.google.com/file/d/1pFE-NRANTsWmQwTyURjHXuECMmoKCFjO/view?usp=share_link)\
+To test the application, you need to install Swagger located at: [здесь](https://drive.google.com/file/d/1pFE-NRANTsWmQwTyURjHXuECMmoKCFjO/view?usp=share_link)\
 Also used in the application RTK Query [https://redux-toolkit.js.org/](https://redux-toolkit.js.org/)
 
 ### Deployment

@@ -2,17 +2,11 @@ import * as S from './styleAdsChange'
 import { useRef } from 'react'
 import { BASE_URL } from '../../services/queryApi'
 
-
-function AdsAddPic({
-  index,
-  LoadImgMutation,
-  idAds,
-  srcImg,
-}) {
+function AdsAddPic({ index, LoadImgMutation, idAds, srcImg }) {
   const inputRef = useRef(null)
 
   const OnChangeFileBtnHandler = () => {
-    const f = inputRef.current.files[0]    
+    const f = inputRef.current.files[0]
     if (f) {
       const reader = new FileReader()
       reader.readAsDataURL(f)
@@ -22,7 +16,6 @@ function AdsAddPic({
           imgBin: f,
         })
       }
-      
     }
   }
   return (
@@ -33,7 +26,7 @@ function AdsAddPic({
         type="file"
         name="file"
       />
-      <S.picImg src={BASE_URL+srcImg} alt="" />
+      {srcImg !== '' && <S.picImg src={BASE_URL + srcImg} alt="" />}
       <S.picImgCover />
     </S.picImgGroup>
   )
@@ -67,7 +60,6 @@ function ArrAdsAddPic({
 }
 
 function FormBlockPic({ skipImg, ImgBin, LoadImgMutation, idAds, arrImgBin }) {
-
   return (
     <S.formBlock>
       <S.formPicTitle>

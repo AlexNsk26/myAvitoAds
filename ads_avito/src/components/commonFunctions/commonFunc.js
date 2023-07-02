@@ -75,7 +75,7 @@ export const CombineAllAdsData = (arrAdsData = [], arrUsersData = []) => {
     }
   })
 }
-export function ProtectedRoute({ children, redirectPath = '/', isAllowed }) {
+export function ProtectedRoute({ children, redirectPath = '/login', isAllowed }) {
   if (IsLogin()) {
     return children
   }
@@ -119,7 +119,7 @@ export const profileUserFields = [
 export function GetTokensAccess() {
   const tokensData = sessionStorage.getItem('tokens')
     ? JSON.parse(sessionStorage.getItem('tokens'))
-    : {}
+    : undefined
   clearInterval(tokensData?.innerTimerId)
 
   if (
@@ -128,7 +128,7 @@ export function GetTokensAccess() {
       1000 * 60 * 2
   ) {
     sessionStorage.removeItem('tokens')
-  } else {
+  } else if (tokensData) {
     let timerId = setInterval(() => {
       const tokensData = sessionStorage.getItem('tokens')
         ? JSON.parse(sessionStorage.getItem('tokens'))
@@ -159,7 +159,6 @@ export function GetTokensAccess() {
           }
           clearInterval(tokensData?.innerTimerId)
           sessionStorage.removeItem('tokens')
-          
         })
     }, 30000)
   }

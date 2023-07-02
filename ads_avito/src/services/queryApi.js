@@ -160,7 +160,7 @@ export const AvitoQueryApi = createApi({
           formData: true,
         }
       },
-      invalidatesTags: ['currentUser'],
+      //invalidatesTags: ['currentUser'],
     }),
   }),
 })

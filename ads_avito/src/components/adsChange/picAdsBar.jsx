@@ -12,16 +12,17 @@ function AdsAddPic({
   const inputRef = useRef(null)
 
   const OnChangeFileBtnHandler = () => {
-    const f = inputRef.current.files[0]
+    const f = inputRef.current.files[0]    
     if (f) {
       const reader = new FileReader()
+      reader.readAsDataURL(f)
       reader.onload = function (evt) {
         LoadImgMutation({
           id: idAds,
           imgBin: f,
         })
       }
-      reader.readAsDataURL(f)
+      
     }
   }
   return (

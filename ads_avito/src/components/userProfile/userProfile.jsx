@@ -7,6 +7,7 @@ import { useRef } from 'react'
 import TxtFldGroup from './textFldProfileSeller'
 import { usePostLoadAvatarUserMutation } from '../../services/queryApi'
 import ImgUser from './imgUser'
+import ImgUserProfile from './imgUserProf'
 
 function UserProfile({
   avatar,
@@ -20,9 +21,9 @@ function UserProfile({
   PatchCurrentUser,
   stateParams,
 }) {
-  const inputRef = useRef(null)
+  /*  const inputRef = useRef(null)
   const [LoadAvatarUser, { data: dataUserAvatar }] =
-    usePostLoadAvatarUserMutation()
+    usePostLoadAvatarUserMutation() */
   const OnClickSaveBtnUserHandler = () => {
     const body = {
       role: 'user',
@@ -45,7 +46,7 @@ function UserProfile({
       .then((payload) => console.log('fulfilled', payload))
       .catch((error) => console.error('rejected', error))
   }
-  const OnChangeFileLinkHandler = () => {
+  /*   const OnChangeFileLinkHandler = () => {
     const f = inputRef.current?.files[0]
     if (f) {
       const reader = new FileReader()
@@ -56,7 +57,7 @@ function UserProfile({
       }
       reader.readAsDataURL(f)
     }
-  }
+  } */
 
   return (
     <S.container>
@@ -74,35 +75,7 @@ function UserProfile({
 
           <S.profileSettings>
             <S.settingsLeft namePage={namePage}>
-              <S.settingsImg>
-                <S.settingsProfileA
-                  onClick={(e) => e.preventDefault()}
-                  href=""
-                  target="_self"
-                >
-                  <S.Img
-                    src={
-                      dataUserAvatar
-                        ? BASE_URL + dataUserAvatar.avatar
-                        : BASE_URL + avatar
-                    }
-                    alt="avatar"
-                  />
-                </S.settingsProfileA>
-              </S.settingsImg>
-              {namePage === 'profileUser' && (
-                <>
-                  <S.settingsChangePhoto for="file_input">
-                    Заменить
-                  </S.settingsChangePhoto>
-                  <S.settingsChangePhotoInput
-                    onChange={(e) => OnChangeFileLinkHandler(e)}
-                    ref={inputRef}
-                    type="file"
-                    id="file_input"
-                  />
-                </>
-              )}
+              <ImgUserProfile namePage={namePage} avatar={avatar} />
             </S.settingsLeft>
             <S.settingsRight>
               {namePage === 'profileUser' ? (
@@ -139,3 +112,35 @@ function UserProfile({
 }
 
 export default UserProfile
+/*  <S.settingsImg>
+                {dataUserAvatar ||
+                  (avatar && (
+                    <S.settingsProfileA
+                      onClick={(e) => e.preventDefault()}
+                      href=""
+                      target="_self"
+                    >
+                      <S.Img
+                        src={
+                          dataUserAvatar
+                            ? BASE_URL + dataUserAvatar.avatar
+                            : BASE_URL + avatar
+                        }
+                        alt="avatar"
+                      />
+                    </S.settingsProfileA>
+                  ))}
+              </S.settingsImg>
+              {namePage === 'profileUser' && (
+                <>
+                  <S.settingsChangePhoto for="file_input">
+                    Заменить
+                  </S.settingsChangePhoto>
+                  <S.settingsChangePhotoInput
+                    onChange={(e) => OnChangeFileLinkHandler(e)}
+                    ref={inputRef}
+                    type="file"
+                    id="file_input"
+                  />
+                </>
+              )} */

@@ -8,7 +8,7 @@ import * as Wrapper from '../../components/container/container'
 import MainSearch from '../../components/mainSearch/mainSearch'
 import AdsBigArr from '../../components/adsBig/adsBig'
 import Footer from '../../components/footer/footer'
-import { GetPageName, CombineAllAdsData, GetTokensAccess } from '../../components/commonFunctions/commonFunc'
+import { GetPageName, CombineAllAdsData, GetTokensAccess, IsLogin } from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import UserProfile from '../../components/userProfile/userProfile'
 import { useGetAllUsersQuery, useGetAllAdsQuery } from '../../services/queryApi'
@@ -38,7 +38,7 @@ function ProfileSellerPage() {
   return (
     <Wrapper.Container>
       <Header>
-        <HeaderBtnGroup />
+        <HeaderBtnGroup  isLogin={IsLogin()} />
       </Header>
       <Wrapper.MainDiv>
         <MainSearch>

@@ -2,30 +2,20 @@ import * as S from './styleAdsChange'
 import { useRef } from 'react'
 import { BASE_URL } from '../../services/queryApi'
 
-function AdsAddPic({
-  index,
-  skipImg,
-  setImgBin,
-  LoadImgMutation,
-  idAds,
-  srcImg,
-}) {
+function AdsAddPic({ index, LoadImgMutation, idAds, srcImg }) {
   const inputRef = useRef(null)
 
   const OnChangeFileBtnHandler = () => {
     const f = inputRef.current.files[0]
     if (f) {
       const reader = new FileReader()
+      reader.readAsDataURL(f)
       reader.onload = function (evt) {
-        //const metadata = `name: ${f.name}, type: ${f.type}, size: ${f.size}, contents:`
-        //const contents = evt.target.result
-        //setImgBin(contents)
         LoadImgMutation({
           id: idAds,
           imgBin: f,
         })
       }
-      reader.readAsDataURL(f)
     }
   }
   return (
@@ -36,7 +26,7 @@ function AdsAddPic({
         type="file"
         name="file"
       />
-      <S.picImg src={BASE_URL+srcImg} alt="" />
+      {srcImg !== '' && <S.picImg src={BASE_URL + srcImg} alt="" />}
       <S.picImgCover />
     </S.picImgGroup>
   )

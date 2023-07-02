@@ -35,6 +35,8 @@ export const cardsImage = styled.div`
   width: 270px;
   height: 270px;
   background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
   @media screen and (max-width: 590px) {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -44,7 +46,10 @@ export const cardsImage = styled.div`
   }
 `
 export const aRef = styled.a``
-export const aImg = styled.img``
+export const aImg = styled.img`
+  height: auto;
+  width: 100%;
+`
 export const cardContent = styled.div``
 
 export const cardTitle = styled.h3`

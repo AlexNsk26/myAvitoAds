@@ -1,20 +1,35 @@
 import * as S from './styleAdsImgBar'
 import { BASE_URL } from '../../services/queryApi'
 
-function OneSmallAds({ url = '', alt = '', id }) {
+function OneSmallAds({ src = '', alt = '', id, changeMainPic, indexPic }) {
   return (
-    <S.articleImgBarDiv key={id}>
-      <S.articleImgBarImg src={BASE_URL + url} alt={alt} />
+    <S.articleImgBarDiv onClick={() => changeMainPic(indexPic)} key={id}>
+      <S.articleImgBarImg src={BASE_URL + src} alt={alt} />
     </S.articleImgBarDiv>
   )
 }
-function OneCircleAdsMob(onClick, idActive, { id, url = '' }) {
-  return <S.imgCircleMob data-id={id} onClick={(e)=>onClick(e)} key={id} activeAds={id === idActive} />
+function OneCircleAdsMob(onClick, idActive, indexPic, { id, url = '' }) {
+  return (
+    <S.imgCircleMob
+      data-id={id}
+      onClick={() => onClick(indexPic)}
+      key={id}
+      activeAds={id === idActive}
+    />
+  )
 }
-export function SmallAdsBar({ arrSmallImg = [] }) {
-  return arrSmallImg.map((img) => OneSmallAds(img))
+export function SmallAdsBar({ changeMainPic, arrSmallImg = [] }) {
+  return arrSmallImg.map((img, indexPic) =>
+    OneSmallAds({ ...img, changeMainPic, indexPic })
+  )
 }
 
 export function AdsBarMob({ onClick, idActive, arrCircle = [] }) {
-  return <>{arrCircle.map((img) => OneCircleAdsMob(onClick, idActive, img))}</>
+  return (
+    <>
+      {arrCircle.map((img, indexPic) =>
+        OneCircleAdsMob(onClick, idActive, indexPic, img)
+      )}
+    </>
+  )
 }

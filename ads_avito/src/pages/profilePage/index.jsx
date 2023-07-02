@@ -1,5 +1,5 @@
 import * as S from './styleProfilePage'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Logo, LogoMob } from '../../components/logo/logo'
 import BackBtn from '../../components/backBtn/backBtn'
 import Header from '../../components/header/header'
@@ -10,7 +10,7 @@ import Footer from '../../components/footer/footer'
 import {
   GetPageName,
   IsLogin,
-  ConvertDate,
+  GetTokensAccess,
 } from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import UserProfile from '../../components/userProfile/userProfile'
@@ -21,9 +21,12 @@ import {
 } from '../../services/queryApi'
 import { CombineAllAdsData } from '../../components/commonFunctions/commonFunc'
 import { profileUserFields } from '../../components/commonFunctions/commonFunc'
-import { myAdsData, profileUserData } from '../../mockData/mockData'
 
 function ProfileUserPage() {
+  useEffect(() => {
+    GetTokensAccess()
+  }, [])
+
   const namePage = GetPageName()
   const [name, setName] = useState(undefined)
   const [surname, setSurname] = useState(undefined)
@@ -54,7 +57,6 @@ function ProfileUserPage() {
     },
   ] = usePatchCurrentUserMutation()
 
-  // console.log(dataCurrentUser)
   const loginData = dataCurrentUser
     ? dataCurrentUser
     : JSON.parse(localStorage.getItem('loginData')) ?? {}
@@ -77,6 +79,7 @@ function ProfileUserPage() {
         </MainSearch>
         <Wrapper.MainContainer page={namePage}>
           <UserProfile
+            avatar={dataCurrentUser?.avatar}
             stateParams={stateParams}
             PatchCurrentUser={PatchCurrentUser}
             complianceInputs={complianceInputs}

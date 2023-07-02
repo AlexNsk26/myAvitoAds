@@ -1,3 +1,6 @@
+import { Navigate } from 'react-router-dom'
+import { BASE_URL } from '../../services/queryApi'
+
 export function GetPageName() {
   const urlPath = new URL(document.URL).pathname
   const pageNames = urlPath.split('/')
@@ -72,6 +75,12 @@ export const CombineAllAdsData = (arrAdsData = [], arrUsersData = []) => {
     }
   })
 }
+export function ProtectedRoute({ children, redirectPath = '/login', isAllowed }) {
+  if (IsLogin()) {
+    return children
+  }
+  return <Navigate to={redirectPath} replace />
+}
 
 export const profileUserFields = [
   {
@@ -107,3 +116,50 @@ export const profileUserFields = [
     placeholder: '+7 xxx xxx-xx-xx',
   },
 ]
+export function GetTokensAccess() {
+  const tokensData = sessionStorage.getItem('tokens')
+    ? JSON.parse(sessionStorage.getItem('tokens'))
+    : undefined
+  clearInterval(tokensData?.innerTimerId)
+
+  if (
+    tokensData &&
+    new Date().getTime() - new Date(tokensData.expireDate).getTime() >
+      1000 * 60 * 2
+  ) {
+    sessionStorage.removeItem('tokens')
+  } else if (tokensData) {
+    let timerId = setInterval(() => {
+      const tokensData = sessionStorage.getItem('tokens')
+        ? JSON.parse(sessionStorage.getItem('tokens'))
+        : {}
+      fetch(`${BASE_URL}auth/login`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_token: tokensData.access_token,
+          refresh_token: tokensData.refresh_token,
+        }),
+      })
+        .then((response) => {
+          const data = response.text()
+          return data
+        })
+        .then((result) => {
+          const tokens = JSON.parse(result) ?? {}
+          if (Object.keys(tokens).find((elem) => elem === 'access_token')) {
+            sessionStorage.setItem(
+              'tokens',
+              JSON.stringify({ ...tokens, expireDate: new Date(), timerId })
+            )
+            console.log(result)
+            return
+          }
+          clearInterval(tokensData?.innerTimerId)
+          sessionStorage.removeItem('tokens')
+        })
+    }, 30000)
+  }
+}

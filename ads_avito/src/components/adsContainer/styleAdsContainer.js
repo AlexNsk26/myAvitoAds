@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components'
 
 export const mainArticle = styled.div`
-  //padding-top: 77px;
+
   max-width: 1178px;
-  //padding: 0 0 70px;
   margin: 0 auto;
   padding: 77px 5px 70px;
   @media screen and (max-width: 768px) {
@@ -22,7 +21,7 @@ export const articleContent = styled.div`
   align-items: top;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  //justify-content: center;
+
   @media screen and (max-width: 768px) {
     display: -webkit-box;
     display: -ms-flexbox;

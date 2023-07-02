@@ -4,12 +4,12 @@ import GetInpFields from './inputProfileUser'
 import PhoneSeller from './phoneBtnSeller'
 import TxtFldGroup from './textFldProfileSeller'
 import ImgUser from './imgUser'
-import {
-  profileSellerFields,
-  profileSellerPhone,
-} from '../../mockData/mockData'
+import ImgUserProfile from './imgUserProf'
 
 function UserProfile({
+  avatar,
+  sellerPhone,
+  sellerFields,
   profileUserData,
   profileUserFields,
   namePage,
@@ -18,6 +18,7 @@ function UserProfile({
   PatchCurrentUser,
   stateParams,
 }) {
+
   const OnClickSaveBtnUserHandler = () => {
     const body = {
       role: 'user',
@@ -40,6 +41,7 @@ function UserProfile({
       .then((payload) => console.log('fulfilled', payload))
       .catch((error) => console.error('rejected', error))
   }
+
   return (
     <S.container>
       {namePage === 'profileUser' && (
@@ -56,14 +58,7 @@ function UserProfile({
 
           <S.profileSettings>
             <S.settingsLeft namePage={namePage}>
-              <S.settingsImg>
-                <S.settingsProfileA href="" target="_self">
-                  <S.Img src="#" alt="" />
-                </S.settingsProfileA>
-              </S.settingsImg>
-              {namePage === 'profileUser' && (
-                <S.settingsChangePhoto>Заменить</S.settingsChangePhoto>
-              )}
+              <ImgUserProfile namePage={namePage} avatar={avatar} />
             </S.settingsLeft>
             <S.settingsRight>
               {namePage === 'profileUser' ? (
@@ -85,11 +80,11 @@ function UserProfile({
                   </S.saveProfileBtn>
                 </S.settingsForm>
               ) : (
-                <TxtFldGroup props={profileSellerFields} />
+                <TxtFldGroup sellerFields={sellerFields} />
               )}
               {namePage === 'profileSeller' && <ImgUser />}
               {namePage === 'profileSeller' && (
-                <PhoneSeller phoneNum={profileSellerPhone} />
+                <PhoneSeller phoneNum={sellerPhone} />
               )}
             </S.settingsRight>
           </S.profileSettings>
@@ -100,3 +95,4 @@ function UserProfile({
 }
 
 export default UserProfile
+

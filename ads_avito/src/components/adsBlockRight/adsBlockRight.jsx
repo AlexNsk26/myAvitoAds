@@ -1,12 +1,7 @@
 import * as S from './styleAdsBlockRight'
 import { useState } from 'react'
 import {
-  AdsContainer,
-  AdsBlockLeft,
   AdsBlockRight,
-  AdsBlockImg,
-  AdsImgBar,
-  AdsImgBarMob,
   AdsContentRight,
 } from '../../components/adsContainer/adsContainer'
 import PhoneSeller from '../userProfile/phoneBtnSeller'
@@ -26,7 +21,6 @@ export function RightBlock({
   adsPrice,
   articleInfo,
   authorInfo,
-  namePage,
   phoneNum,
   dataComments,
   isLogin,
@@ -60,7 +54,7 @@ export function RightBlock({
         ) : (
           <PhoneSeller phoneNum={phoneNum} />
         )}
-        <AuthorContent authorCont={authorInfo} />
+        <AuthorContent userId={authorInfo?.id} authorCont={authorInfo} />
       </AdsContentRight>
     </AdsBlockRight>
   )

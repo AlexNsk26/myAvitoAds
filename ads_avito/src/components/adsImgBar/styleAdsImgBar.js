@@ -7,12 +7,8 @@ export const articleImgBarDiv = styled.div`
   background-color: #f0f0f0;
   border: 2px solid #f0f0f0;
   margin: 0 5px;
-  /// .article__img img
-/*   width: 100%;
-  height: auto;
-  display: block;
-  -o-object-fit: cover;
-  object-fit: cover; */
+  display: flex;
+  align-items: center;
 `
 export const articleImgBarImg = styled.img`
   width: 100%;

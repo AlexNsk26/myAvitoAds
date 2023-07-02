@@ -10,13 +10,13 @@ function AdsChangeForm({
   isLoading,
   errorNewAds,
   LoadImgMutation,
-  arrImgBin
+  arrImgBin,
 }) {
   return (
     <ModalBlock type={type}>
       <FormChange
-      PatchAdsByIdMutation={PatchAdsByIdMutation}
-      arrImgBin={arrImgBin}
+        PatchAdsByIdMutation={PatchAdsByIdMutation}
+        arrImgBin={arrImgBin}
         LoadImgMutation={LoadImgMutation}
         idAds={idAds}
         errorNewAds={errorNewAds}

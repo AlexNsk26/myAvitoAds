@@ -1,7 +1,6 @@
 import * as S from './styleAdsPage'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Logo, LogoMob } from '../../components/logo/logo'
-import mapSort from 'mapsort'
 import BackBtn from '../../components/backBtn/backBtn'
 import Header from '../../components/header/header'
 import * as Wrapper from '../../components/container/container'
@@ -11,6 +10,7 @@ import {
   GetPageName,
   IsLogin,
   ConvertDate,
+  GetTokensAccess
 } from '../../components/commonFunctions/commonFunc'
 import HeaderBtnGroup from '../../components/headerBtnGroup/headerBtnGroup'
 import { AdsContainer } from '../../components/adsContainer/adsContainer'
@@ -21,23 +21,15 @@ import LeftBlock from '../../components/adsBlockLeft/adsBlockLeft'
 import {
   useGetAdsByIdQuery,
   useGetAllComByIdAdsQuery,
-  usePostComByIdAdsMutation,
   useDeleteAdsByIdMutation,
 } from '../../services/queryApi'
 
-import {
-  barImgs,
-  barImgsMob,
-  adsName,
-  articleInfo,
-  authorInfo,
-  adsPrice,
-  descr,
-  phoneNumHide,
-} from '../../mockData/mockData'
 import { useState, useEffect } from 'react'
 
 function AdsPage() {
+  useEffect(() => {
+    GetTokensAccess()
+  }, [])
   const namePage = GetPageName()
   const { idAds } = useParams()
   const navigate = useNavigate()
@@ -92,7 +84,7 @@ function AdsPage() {
         <Wrapper.MainContainer page={namePage}>
           {!isLoadingDataAdsById && (
             <AdsContainer>
-              <LeftBlock barImgs={dataAdsById.images} />
+              <LeftBlock barImgs={dataAdsById?.images} />
               <RightBlock
                 idAds={idAds}
                 isLoading={isLoading}
@@ -100,13 +92,13 @@ function AdsPage() {
                 adsName={dataAdsById?.title}
                 adsPrice={dataAdsById?.price}
                 articleInfo={{
-                  date: ConvertDate(dataAdsById.created_on),
-                  city: dataAdsById.user.city ?? '',
+                  date: ConvertDate(dataAdsById?.created_on),
+                  city: dataAdsById?.user.city ?? '',
                 }}
                 dataComments={dataCommentsAdsById}
-                authorInfo={dataAdsById.user}
+                authorInfo={dataAdsById?.user}
                 namePage={namePage}
-                phoneNum={dataAdsById.user.phone}
+                phoneNum={dataAdsById?.user.phone}
                 isLogin={IsLogin()}
                 setShowComments={setShowComments}
               />
@@ -120,8 +112,4 @@ function AdsPage() {
   )
 }
 export default AdsPage
-/* mapSort(
-            dataCommentsAdsById,
-            (value) => new Date(value),
-            (a, b) => a - b
-          ) */
+

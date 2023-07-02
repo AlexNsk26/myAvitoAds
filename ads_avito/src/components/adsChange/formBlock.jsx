@@ -2,7 +2,7 @@ import * as S from './styleAdsChange'
 import FormBlockPic from './picAdsBar'
 import SaveBtn from './saveBtn'
 import ErrorsGroup from '../login/errorGroup'
-import { useState } from 'react'
+
 const validateInputTitle = (e, length, type = 'text') => {
   const { target } = e
   if (type === 'text') {

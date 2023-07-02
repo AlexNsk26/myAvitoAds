@@ -141,10 +141,6 @@ export const settingsImg = styled.div`
   height: 170px;
   border-radius: 50%;
   background-color: #f0f0f0;
-  /*   @media screen and (max-width: 580px) {
-    width: 132px;
-    height: 132px;
-  } */
 `
 export const settingsProfileA = styled.a``
 export const Img = styled.img`
@@ -154,13 +150,17 @@ export const Img = styled.img`
   -o-object-fit: cover;
   object-fit: cover;
 `
-export const settingsChangePhoto = styled.a`
+export const settingsChangePhoto = styled.label`
   margin-top: 10px;
   margin-bottom: 30px;
   text-decoration: none;
   font-size: 16px;
+  cursor: pointer;
   line-height: 24px;
   color: #009ee4;
+`
+export const settingsChangePhotoInput = styled.input`
+display: none;
 `
 export const settingsRight = styled.div`
   width: 380px;

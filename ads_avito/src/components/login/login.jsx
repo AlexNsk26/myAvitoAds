@@ -26,7 +26,6 @@ const GetInputParams = () => {
 }
 function LoginForm() {
   const [signUp, setSignUp] = useState(false)
-  const [getTokens, setGetTokens] = useState(false)
   const [paswNotEqual, setPaswNotEqual] = useState(false)
   const [loginDataReq, setLoginDataReq] = useState({})
   const navigate = useNavigate()
@@ -62,7 +61,7 @@ function LoginForm() {
   useEffect(() => {
     if (dataLogin) {
       const { access_token, token_type } = dataLogin
-      sessionStorage.setItem('tokens', JSON.stringify(dataLogin))
+
       fetch(`${BASE_URL}user`, {
         method: 'GET',
         headers: {
@@ -77,29 +76,11 @@ function LoginForm() {
         .then((result) => {
           localStorage.setItem('loginData', result)
         })
-      setInterval(() => {
-        const { access_token, refresh_token } = JSON.parse(
-          sessionStorage.getItem('tokens')
-        )
-        fetch(`${BASE_URL}auth/login`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            access_token,
-            refresh_token,
-          }),
-        })
-          .then((response) => {
-            const data = response.text()
-            return data
-          })
-          .then((result) => {
-            sessionStorage.setItem('tokens', result)
-            console.log(result)
-          })
-      }, 30000)
+
+      sessionStorage.setItem(
+        'tokens',
+        JSON.stringify({ ...dataLogin, expireDate: new Date() })
+      ) 
       navigate('/profileUser')
     }
   }, [dataLogin])
